@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const uniqueValidator = require('mongoose-unique-validator');
-const UserSchema = new mongoose.Schema({
+const SellerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Please enter name1"],
@@ -57,9 +57,21 @@ const UserSchema = new mongoose.Schema({
             required: true,
             trim: true,
         }
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    isBlocked: {
+        type: Boolean,
+        default: false,
+    },
+    proof:{
+        type: String,
+        trim: true,
     }
 }, { timestamps: true });
-UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
-const User = mongoose.model("user", UserSchema);
-User.createIndexes();
-module.exports = User;
+SellerSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
+const Seller = mongoose.model("seller", SellerSchema);
+Seller.createIndexes();
+module.exports = Seller;

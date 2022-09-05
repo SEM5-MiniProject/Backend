@@ -41,7 +41,7 @@ const OrderSchema = new mongoose.Schema({
     },
     sellerId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "seller",
         required: [true, "Please enter sellerId"],
         trim: true,
     },

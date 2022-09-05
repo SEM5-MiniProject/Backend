@@ -43,7 +43,7 @@ const FoodSchema = new mongoose.Schema({
     },
     belongsTo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "seller",
         required: [true, "Please enter belongsTo"],
         trim: true,
     },
