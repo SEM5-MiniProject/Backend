@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const uniqueValidator = require('mongoose-unique-validator');
+const {hashPassword} = require("../utils/bcrypt.util")
 const SellerSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -69,6 +70,13 @@ const SellerSchema = new mongoose.Schema({
         trim: true,
     }
 }, { timestamps: true });
+SellerSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        next();
+    }
+    this.password = await hashPassword(this.password);
+    next();
+})
 SellerSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Seller = mongoose.model("seller", SellerSchema);
 Seller.createIndexes();

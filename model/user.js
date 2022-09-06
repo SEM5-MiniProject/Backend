@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const uniqueValidator = require('mongoose-unique-validator');
+const {hashPassword} = require("../utils/bcrypt.util")
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -58,6 +59,15 @@ const UserSchema = new mongoose.Schema({
     }
 
 }, { timestamps: true });
+
+
+UserSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        next();
+    }
+    this.password = await hashPassword(this.password);
+    next();
+});
 UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const User = mongoose.model("user", UserSchema);
 User.createIndexes();
