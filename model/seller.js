@@ -4,14 +4,14 @@ const uniqueValidator = require('mongoose-unique-validator');
 const SellerSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, "Please enter name1"],
+        required: [true, "Please enter name"],
         maxlength: [30, "Name cannot exceed 30 character"],
         minlength: [3, "Name cannot be less than 3 character"],
         trim: true,
     },
     email: {
         type: String,
-        required: [true, "Please enter email for name1"],
+        required: [true, "Please enter email"],
         trim: true,
         validate: [validator.isEmail, "Please enter valid email"],
     },
@@ -31,32 +31,30 @@ const SellerSchema = new mongoose.Schema({
             },
         },
     },
-    address: {
-        houseNo: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        sector: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        city: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        state: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        pincode: {
-            type: Number,
-            required: true,
-            trim: true,
-        }
+    houseNo: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    sector: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    city: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    state: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    pincode: {
+        type: Number,
+        required: true,
+        trim: true,
     },
     isVerified: {
         type: Boolean,
@@ -66,7 +64,7 @@ const SellerSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    proof:{
+    proof: {
         type: String,
         trim: true,
     }

@@ -55,16 +55,16 @@ const OrderSchema = new mongoose.Schema({
 },{ timestamps: true });
 
 
-OrderSchema.pre('save',async function (this){
-    let totalAmount = 0;
-    this.orderDetails.forEach(async (orderDetail) => {
-        const price = await Food.findById(orderDetail.foodId).select("price");
-        // totalAmount += orderDetail.quantity * orderDetail.foodId.price;
-        totalAmount += orderDetail.quantity * price;
-    })
-    this.totalAmount = totalAmount;
-    return next();
-})
+// OrderSchema.pre('save',async function (){
+//     let totalAmount = 0;
+//     this.orderDetails.forEach(async (orderDetail) => {
+//         const price = await Food.findById(orderDetail.foodId).select("price");
+//         // totalAmount += orderDetail.quantity * orderDetail.foodId.price;
+//         totalAmount += orderDetail.quantity * price;
+//     })
+//     this.totalAmount = totalAmount;
+//     return next();
+// })
 OrderSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Order = mongoose.model("order", OrderSchema);
 Order.createIndexes();
