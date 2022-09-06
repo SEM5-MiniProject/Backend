@@ -1,0 +1,24 @@
+const yup = require('yup');
+
+const userSignupSchema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+    phoneNo: yup.number().required(),
+    houseNo: yup.string().required(),
+    sector: yup.string().required(),
+    city: yup.string().required(),
+    state: yup.string().required(),
+    pincode: yup.number().required(),
+})
+
+
+const userLoginSchema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+})
+
+module.exports = {
+    userSignupSchema,
+    userLoginSchema
+}
