@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Please enter email"],
         trim: true,
         validate: [validator.isEmail, "Please enter valid email"],
+        unique: true,
     },
     password: {
         type: String,
@@ -31,6 +32,7 @@ const UserSchema = new mongoose.Schema({
                 return /\d{10}/.test(v);
             },
         },
+        unique: true,
     },
     houseNo: {
         type: String,
@@ -61,6 +63,7 @@ const UserSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 
+UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 UserSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next();
@@ -68,7 +71,6 @@ UserSchema.pre("save", async function (next) {
     this.password = await hashPassword(this.password);
     next();
 });
-UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const User = mongoose.model("user", UserSchema);
 User.createIndexes();
 module.exports = User;

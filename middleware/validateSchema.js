@@ -12,9 +12,10 @@ const validateSchema = (schema) => {
             );
             next();
         } catch (err) {
+            console.log(err);
             res.status(409).json({ error: err.message });
         }
     }
 }
 
-export default validateSchema;
+module.exports = validateSchema;

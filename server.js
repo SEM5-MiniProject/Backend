@@ -8,6 +8,9 @@ const AdminJSExpress = require('@adminjs/express')
 const adminJs = require('./config/admin')
 const router = AdminJSExpress.buildRouter(adminJs)
 app.use(adminJs.options.rootPath, router)
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/user', require('./routes/auth'));
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
