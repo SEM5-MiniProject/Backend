@@ -11,6 +11,7 @@ const userSignupSchema = yup.object({
     city: yup.string().required(),
     state: yup.string().required(),
     pincode: yup.number().required(),
+    isSeller: yup.boolean().required(),
     })
 })
 
@@ -19,6 +20,7 @@ const userLoginSchema = yup.object({
     body: yup.object({
     email: yup.string().email().required(),
     password: yup.string().required(),
+    isSeller: yup.boolean().required(),
     })
 })
 

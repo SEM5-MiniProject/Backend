@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { UserSignup } = require('../controllers/auth');
+const auth = require('../controllers/auth');
 const validateRequest = require("../middleware/validateSchema");
-const { userSignupSchema } = require('../schema/user.schema');
+const { userSignupSchema,userLoginSchema } = require('../schema/user.schema');
 
-router.post('/api/signup', validateRequest(userSignupSchema), UserSignup);
+router.post('/api/signup', validateRequest(userSignupSchema), auth.userSignup);
+router.post('/api/login', validateRequest(userLoginSchema), auth.userLogin);
 
 
 
