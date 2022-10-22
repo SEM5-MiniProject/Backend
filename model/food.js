@@ -49,6 +49,20 @@ const FoodSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
+// check if for same seller, food name and image is unique
+FoodSchema.pre('save',function (next) {
+  const food = this;
+  food.constructor.findOne({ name: food.name, image: food.image, belongsTo: food.belongsTo }, (err, foundFood) => {
+    if (err) {
+      next(err);
+      } else if (foundFood) {
+        next(new Error('Food already exists'));
+      } else {
+        next();
+      }
+  });
+});
+
 FoodSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Food = mongoose.model('food', FoodSchema);
 Food.createIndexes();

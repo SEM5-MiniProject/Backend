@@ -47,7 +47,8 @@ const userLogin = async (req, res) => {
       if (!isMatch) {
         return res.status(400).json({ error: 'Invalid Credentials' });
       }
-      const token = generateToken(user._id);
+      const token = generateToken({id:user._id, role: 'user'});
+      res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 10 * 24 * 60 * 60 * 1000 });
       return res.status(200).json({
         token,
         role: 'user',
@@ -58,7 +59,8 @@ const userLogin = async (req, res) => {
       if (!isMatch) {
         return res.status(400).json({ error: 'Invalid Credentials' });
       }
-      const token = generateToken(seller._id);
+      const token = generateToken({id:seller._id, role: 'seller'});
+      res.cookie('token',token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 10 * 24 * 60 * 60 * 1000 });
       return res.status(200).json({
         token,
         role: 'seller',

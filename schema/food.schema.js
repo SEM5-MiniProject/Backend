@@ -1,16 +1,17 @@
 const yup = require('yup');
 
-const foodSchema = yup.object({
+const addFoodSchema = yup.object({
+  body: yup.object({
   name: yup.string().required(),
   price: yup.number().required(),
   description: yup.string().required(),
-  category: yup.string().required(),
   image: yup.string().required(),
+  category: yup.mixed().oneOf(['launch', 'dinner', 'breakfast', 'snacks']).required(),
   isVeg: yup.boolean().required(),
   isAvailable: yup.boolean().required(),
-  belongsTo: yup.string().required(),
+  }),
 });
 
 module.exports = {
-  foodSchema,
+  addFoodSchema,
 };

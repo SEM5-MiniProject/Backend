@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 const auth = require('../controllers/auth');
 const validateRequest = require('../middleware/validateSchema');
