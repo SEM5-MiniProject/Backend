@@ -11,6 +11,8 @@ app.use(adminJs.options.rootPath, router)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/user', require('./routes/auth'));
+const {serve,setup} = require('./utils/swagger.util');
+app.use('/api-docs', serve, setup);
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });

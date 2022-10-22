@@ -14,6 +14,7 @@ const SellerSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter email"],
         trim: true,
+        unique: true,
         validate: [validator.isEmail, "Please enter valid email"],
     },
     password: {
@@ -26,6 +27,7 @@ const SellerSchema = new mongoose.Schema({
         type: Number,
         required: true,
         trim: true,
+        unique: true,
         validate: {
             validator: function (v) {
                 return /\d{10}/.test(v);
