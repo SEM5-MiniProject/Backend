@@ -4,9 +4,9 @@ const swaggerUI = require('swagger-ui-express');
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
-      title: 'Mentor Mentee API',
+      title: 'Meal Diaries API',
       version: '1.0.0',
-      description: 'Mentor Mentee API',
+      description: 'Meal Diaries API',
       contact: {
         name: 'Salman Adhikari',
         email: 'salmanad5s3@gmail.com',
