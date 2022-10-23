@@ -47,7 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint"
+      "pre-commit": "yarn run lint && yarn run fix && git add ."
     }
   },
   "engines": {
