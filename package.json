@@ -9,7 +9,8 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "lint": "eslint --plugin markdown --ext js,md .",
-    "fix": "eslint --fix --plugin markdown --ext js,md ."
+    "fix": "eslint --fix --plugin markdown --ext js,md .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@adminjs/express": "^5.0.0",
@@ -41,7 +42,13 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-react": "^7.31.10",
+    "husky": "^8.0.0",
     "nodemon": "^2.0.19"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint"
+    }
   },
   "engines": {
     "node": "16.x"

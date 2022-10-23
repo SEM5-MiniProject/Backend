@@ -50,7 +50,7 @@ const FoodSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // check if for same seller, food name and image is unique
-FoodSchema.pre('save',function (next) {
+FoodSchema.pre('save', (next)=> {
   const food = this;
   food.constructor.findOne({ name: food.name, image: food.image, belongsTo: food.belongsTo }, (err, foundFood) => {
     if (err) {
