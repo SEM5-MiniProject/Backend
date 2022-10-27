@@ -71,7 +71,7 @@ const SellerSchema = new mongoose.Schema({
     trim: true,
   },
 }, { timestamps: true });
-SellerSchema.pre('save', async (next) => {
+SellerSchema.pre('save', async function (next)  {
   if (!this.isModified('password')) {
     next();
   }

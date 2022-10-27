@@ -1,0 +1,11 @@
+{
+  "type": "service_account",
+  "project_id": "sem5backend",
+  "private_key_id": "91b69105a4d8c0f6a8b2c28f1dc4b109703999cf",
+  "client_email": "firebase-adminsdk-t2nvb@sem5backend.iam.gserviceaccount.com",
+  "client_id": "108687460748205065951",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-t2nvb%40sem5backend.iam.gserviceaccount.com"
+}

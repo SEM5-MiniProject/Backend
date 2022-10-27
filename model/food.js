@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
+const log = require('../log');
 
 const FoodSchema = new mongoose.Schema({
   name: {
@@ -50,20 +51,23 @@ const FoodSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // check if for same seller, food name and image is unique
-FoodSchema.pre('save', (next)=> {
+FoodSchema.pre('save', async function (next) {
   const food = this;
-  food.constructor.findOne({ name: food.name, image: food.image, belongsTo: food.belongsTo }, (err, foundFood) => {
-    if (err) {
-      next(err);
-      } else if (foundFood) {
-        next(new Error('Food already exists'));
-      } else {
-        next();
-      }
+  console.log("Food pre is called", food);
+
+  const res = await Food.findOne({
+    $and: [
+      { name: food.name },
+      { belongsTo: food.belongsTo },
+    ],
   });
+  if (res) {
+    log.error('Food already exists');
+    throw new Error('Food already exists');
+  }
+  next();
 });
 
 FoodSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Food = mongoose.model('food', FoodSchema);
-Food.createIndexes();
 module.exports = Food;

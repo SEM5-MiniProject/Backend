@@ -62,7 +62,7 @@ const UserSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
-UserSchema.pre('save', async (next) => {
+UserSchema.pre('save', async function (next)  {
   if (!this.isModified('password')) {
     next();
   }

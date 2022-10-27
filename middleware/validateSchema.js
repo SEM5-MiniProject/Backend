@@ -8,6 +8,7 @@ const validateSchema = (schema) => async (req, res, next) => {
         body: req.body,
         params: req.params,
         query: req.query,
+        file: req.file,
       },
     );
     next();

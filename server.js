@@ -7,13 +7,13 @@ const { serve, setup } = require('./utils/swagger.util');
 const log = require('./log');
 const cookieParser = require('cookie-parser');
 const app = express();
-
+const cors = require('cors');
+app.use(cors());
 const PORT = process.env.PORT || 3000;
-
 const router = AdminJSExpress.buildRouter(adminJs);
 app.use(adminJs.options.rootPath, router);
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/user', require('./routes/auth'));
 app.use('/seller', require('./routes/seller'));
