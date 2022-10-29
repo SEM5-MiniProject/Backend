@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/user', require('./routes/auth'));
 app.use('/seller', require('./routes/seller'));
+app.use('/profile', require('./routes/profile'));
 app.use('/api-docs', serve, setup);
 app.get('/', (req, res) => {
   res.send('Hello World!');
