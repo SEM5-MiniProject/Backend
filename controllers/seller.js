@@ -1,4 +1,5 @@
 const Food = require('../model/food');
+const Offer = require('../model/offer');
 const {storage} = require('../config/firebase')
 const log = require('../log');
 const uuidv4 = require('uuid/v4');
@@ -99,3 +100,75 @@ module.exports.updateFood = async (req, res) => {
     res.status(500).json({error: err.message});
   }
 };
+module.exports.addOffer = async (req, res) => {
+  try {
+    const food = await Food.findOne({_id: req.params.id, belongsTo: req.seller._id});
+    if (!food) {
+      return res.status(404).json({error: 'Food not found'});
+    }
+    const offer = new Offer({
+      ...req.body,
+      belongsTo: food._id,
+      food: req.params.id,
+    });
+    await offer.save();
+    res.status(201).json(offer);
+  } catch (err) {
+    log.error(err);
+    res.status(500).json({error: err.message});
+  }
+}
+
+module.exports.getOffer = async (req, res) => {
+  try {
+    const food = await Food.findOne({_id: req.params.id, belongsTo: req.seller._id});
+    if (!food) {
+      return res.status(404).json({error: 'Food not found'});
+    }
+    const offer = await Offer.findOne({food: food._id});
+    if (!offer) {
+      return res.status(404).json({error: 'Offer not found'});
+    }
+    res.status(200).json(offer);
+  } catch (err) {
+    log.error(err);
+    res.status(500).json({error: err.message});
+  }
+}
+module.exports.updateOffer = async (req, res) => {
+  try {
+    const food = await Food.findOne({_id: req.params.id, belongsTo: req.seller._id});
+    if (!food) {
+      return res.status(404).json({error: 'Food not found'});
+    }
+    const offer = await Offer.findOneAndUpdate({food: food._id}, req.body, {new: true});
+    res.status(200).json(offer);
+  } catch (err) {
+    log.error(err);
+    res.status(500).json({error: err.message});
+  }
+}
+module.exports.deleteOffer = async (req, res) => {
+  try {
+    const food = await Food.findOne({_id: req.params.id, belongsTo: req.seller._id});
+    if (!food) {
+      return res.status(404).json({error: 'Food not found'});
+    }
+    const offer = await Offer.findOneAndDelete({food: food._id});
+    res.status(200).json(offer);
+  } catch (err) {
+    log.error(err);
+    res.status(500).json({error: err.message});
+  }
+}
+module.exports.getAllOffers = async (req, res) => {
+  try {
+    const Foods = await Food.find({belongsTo: req.seller._id});
+    log.info(Foods.map(food => food._id));
+    const offers = await Offer.find({food: {$in: Foods.map(food => food._id)}});
+    res.status(200).json(offers);
+  } catch (err) {
+    log.error(err);
+    res.status(500).json({error: err.message});
+  }
+}

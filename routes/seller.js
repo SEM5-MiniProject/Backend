@@ -6,6 +6,7 @@ const checkMongoId = require('../middleware/mongooseId');
 const { checkIfUser, checkIfSeller } = require('../middleware/requiredUser');
 const validateRequest = require('../middleware/validateSchema');
 const { addFoodSchema } = require('../schema/food.schema');
+const { foodOfferSchema } = require('../schema/offer.schema');
 const upload = require('../utils/multer.util');
 /**
  * @swagger
@@ -82,6 +83,30 @@ router.post('/api/food/add', upload.single('image'), validateRequest(addFoodSche
  */
 router.get('/api/food', auth, checkIfSeller, sellerController.getFoods);
 
+/**
+ * @swagger
+ * /seller/api/food/offers:
+ *   get:
+ *     description: Get all offers
+ *     parameters:
+ *      - name: token
+ *        description: token of the user
+ *        in: cookie
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: Offers fetched successfully
+ *       500:
+ *         description: Internal Server Error
+ *       400:
+ *         description: Offers not found
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ */
+ router.get('/api/food/offers', auth, checkIfSeller, sellerController.getAllOffers);
+ 
 /**
  * @swagger
  * /seller/api/food/{id}:
@@ -197,4 +222,131 @@ router.delete('/api/food/:id', checkMongoId, auth, checkIfSeller, sellerControll
  *         description: Forbidden
  */
 router.put('/api/food/:id', checkMongoId, upload.single('image'), auth, checkIfSeller, sellerController.updateFood);
+
+/**
+ * @swagger
+ * /seller/api/food/{id}/offer:
+ *   post:
+ *     description: Add offer to a food item
+ *     parameters:
+ *      - name: id
+ *        description: id of the food item
+ *        required: true
+ *        in: path
+ *        type: string
+ *      - name: validTill
+ *        description: validTill of the offer
+ *        required: true
+ *        in: formData
+ *        type: string
+ *      - name: discount
+ *        description: discount of the offer
+ *        required: true
+ *        in: formData
+ *        type: number
+ *      - name: token
+ *        description: token of the user
+ *        in: cookie
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: Offer added successfully
+ *       500:
+ *         description: Internal Server Error
+ *       404:
+ *         description: Food item not found
+ *       400:
+ *         description: Offer not added
+ */
+router.post('/api/food/:id/offer', checkMongoId, auth, checkIfSeller, validateRequest(foodOfferSchema),sellerController.addOffer);
+
+/**
+ * @swagger
+ * /seller/api/food/{id}/offer:
+ *   get:
+ *     description: Get offer of a food item
+ *     parameters:
+ *      - name: id
+ *        description: id of the food item
+ *        required: true
+ *        in: path
+ *        type: string
+ *      - name: token
+ *        description: token of the user
+ *        in: cookie
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: Offer fetched successfully
+ *       500:
+ *         description: Internal Server Error
+ *       404:
+ *         description: Food item not found
+ *       400:
+ *         description: Offer not found
+ */
+router.get('/api/food/:id/offer', checkMongoId, auth, checkIfSeller, sellerController.getOffer); 
+
+/**
+ * @swagger
+ * /seller/api/food/{id}/offer:
+ *   put:
+ *     description: Update offer of a food item
+ *     parameters:
+ *      - name: id
+ *        description: id of the food item
+ *        required: true
+ *        in: path
+ *        type: string
+ *      - name: validTill
+ *        description: validTill of the offer
+ *        required: true
+ *        in: formData
+ *        type: string
+ *      - name: discount
+ *        description: discount of the offer
+ *        required: true
+ *        in: formData
+ *        type: number
+ *      - name: token
+ *        description: token of the user
+ *        in: cookie
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: Offer updated successfully
+ *       500:
+ *         description: Internal Server Error
+ *       404:
+ *         description: Food item not found
+ */
+router.put('/api/food/:id/offer', checkMongoId, auth, checkIfSeller, validateRequest(foodOfferSchema),sellerController.updateOffer);
+
+/**
+ * @swagger
+ * /seller/api/food/{id}/offer:
+ *   delete:
+ *     description: Delete offer of a food item
+ *     parameters:
+ *      - name: id
+ *        description: id of the food item
+ *        required: true
+ *        in: path
+ *        type: string
+ *      - name: token
+ *        description: token of the user
+ *        in: cookie
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: Offer deleted successfully
+ *       500:
+ *         description: Internal Server Error
+ *       404:
+ *         description: Food item not found
+ *       400:
+ *         description: Offer not deleted
+ */
+router.delete('/api/food/:id/offer', checkMongoId, auth, checkIfSeller, sellerController.deleteOffer);
+
 module.exports = router;
