@@ -8,7 +8,7 @@ const userSignup = (req, res) => {
   try {
     if (req.body.isSeller === 'true') {
       const seller = new Seller(req.body);
-      seller.save((err, seller) => {
+      seller.save((err) => {
         if (err) {
           log.error(err);
           return res.status(400).json({ error: 'user already exists' });
@@ -19,7 +19,7 @@ const userSignup = (req, res) => {
       });
     } else {
       const user = new User(req.body);
-      user.save((err, user) => {
+      user.save((err) => {
         if (err) {
           log.error(err);
           return res.status(400).json({

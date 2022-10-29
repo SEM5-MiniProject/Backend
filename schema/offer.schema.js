@@ -1,5 +1,4 @@
 const yup = require('yup');
-const parse = require('date-fns/parse');
 const { parseISO, isDate } = require('date-fns');
 const foodOfferSchema = yup.object({
   body: yup.object({

@@ -1,4 +1,3 @@
-const { AnySchema } = require('yup');
 const log = require('../log');
 
 const validateSchema = (schema) => async (req, res, next) => {

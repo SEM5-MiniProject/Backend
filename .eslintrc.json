@@ -8,7 +8,7 @@
         "no-console": "off",
         "no-underscore-dangle": "off",
         "no-param-reassign": "off",
-        "no-unused-vars": "off",
+        "no-unused-vars": "error",
         "no-use-before-define": "off",
         "no-plusplus": "off",
         "no-undef": "off",
