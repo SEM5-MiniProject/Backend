@@ -98,4 +98,34 @@ const { checkIfUser } = require("../middleware/requiredUser");
  cart_Route.delete('/add-to-cart/:food_id',auth, checkIfUser ,cart_controller.add_to_cart );
 
 
+ /**
+ * @swagger
+ * /add-to-cart/{food_id}:
+ *   put:
+ *     description: put the items in the Cart
+ *     parameters:
+ *      - name: food_id
+ *        description: get a Food Id
+ *        required: true
+ *        in: formData
+ *        type: number 
+ *      - name: quantity
+ *        description: put the quantity of food Items
+ *        required: true
+ *        in: formdata
+ *        type: String 
+ *      - name: token
+ *        description: token of the user
+ *        in: cookie
+ *        type: string
+ *     responses:
+ *       200:
+ *         description: Item updated successfully
+ *       500:
+ *         description: food item not found
+
+ */
+  cart_Route.put('/add-to-cart/:food_id',auth, checkIfUser ,cart_controller.add_to_cart );
+
+
 module.exports = cart_Route;
