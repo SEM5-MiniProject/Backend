@@ -1,12 +1,12 @@
 const Cart = require('../model/cart');
-
+const log  = require('../log')
 const add_to_cart = async(req, res)=> {
     try {
         
         const cart_obj = new Cart ({
-            user_id:req.user.user_id,
-            food_id:req.user.food_id,
-            quantity:req.user.quantity,
+            user_id:req.user,
+            food_id:req.body.food,
+            quantity:req.body.quantity,
         });
 
         const cartData =  await cart_obj.save()

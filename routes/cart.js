@@ -1,34 +1,34 @@
 const express = require("express");
-const cart_Route = express.cart();
+const cart_Route = express.Router();
 
 const auth = require('../middleware/auth');
 
 const cart_controller = require ("../controllers/cartController");
 const { checkIfUser } = require("../middleware/requiredUser");
 
-
-
+const validateSchema = require ('../middleware/validateSchema')
+const cartSchema = require('../schema/cart.schema')
 /**
  * @swagger
  * /add-to-cart/add:
  *   post:
  *     description: Add to Cart
  *     parameters:
- *      - name: food_id
+ *      - name: food
  *        description: Food Id
  *        required: true
  *        in: formData
- *        type: number 
- *      - name: user_id
- *        description: User ID
- *        required: true
+ *        type: string
+ *      - name: token
+ *        description: token of the user
  *        in: cookie
- *        type: String 
+ *        type: string
  *      - name: quantity
+ * 
  *        description: Number of food Items
  *        required: true
  *        in: formdata
- *        type: String
+ *        type: number
  *     responses:
  *       200:
  *         description: Items added successfully
@@ -36,15 +36,15 @@ const { checkIfUser } = require("../middleware/requiredUser");
  *         description: Error in adding the items
 
  */
- cart_Route.post('/add-to-cart/add',auth, checkIfUser ,cart_controller.add_to_cart );
+ cart_Route.post('/add',auth, checkIfUser, validateSchema(cartSchema) ,cart_controller.add_to_cart );
 
 /**
  * @swagger
- * /add-to-cart/{food_id}:
+ * /add-to-cart/{food}:
  *   get:
  *     description: get the items which is Added to Cart
  *     parameters:
- *      - name: food_id
+ *      - name: food
  *        description: get a Food Id
  *        required: true
  *        in: formData
@@ -65,16 +65,15 @@ const { checkIfUser } = require("../middleware/requiredUser");
  *         description: food item not found
 
  */
- cart_Route.get('/add-to-cart/:food_id',auth, checkIfUser ,cart_controller.add_to_cart );
-
+ cart_Route.get('/add-to-cart/:food',auth, checkIfUser ,cart_controller.add_to_cart );
 
 /**
  * @swagger
- * /add-to-cart/{food_id}:
+ * /add-to-cart/{food}:
  *   delete:
  *     description: get the items which is Added to Cart
  *     parameters:
- *      - name: food_id
+ *      - name: food
  *        description: get a Food Id
  *        required: true
  *        in: formData
@@ -95,12 +94,11 @@ const { checkIfUser } = require("../middleware/requiredUser");
  *         description: food item not found
 
  */
- cart_Route.delete('/add-to-cart/:food_id',auth, checkIfUser ,cart_controller.add_to_cart );
-
+ cart_Route.delete('/add-to-cart/:food',auth, checkIfUser ,cart_controller.add_to_cart );
 
  /**
  * @swagger
- * /add-to-cart/{food_id}:
+ * /add-to-cart/{food}:
  *   put:
  *     description: put the items in the Cart
  *     parameters:
@@ -125,7 +123,6 @@ const { checkIfUser } = require("../middleware/requiredUser");
  *         description: food item not found
 
  */
-  cart_Route.put('/add-to-cart/:food_id',auth, checkIfUser ,cart_controller.add_to_cart );
-
+  cart_Route.put('/add-to-cart/:food',auth, checkIfUser ,cart_controller.add_to_cart );
 
 module.exports = cart_Route;
