@@ -11,7 +11,7 @@ const userSignup = (req, res) => {
       seller.save((err) => {
         if (err) {
           log.error(err);
-          return res.status(400).json({ error: 'user already exists' });
+          return res.status(400).json({ error: err.message });
         }
         return res.status(201).json({
           message: 'Signup successfully',
@@ -23,7 +23,7 @@ const userSignup = (req, res) => {
         if (err) {
           log.error(err);
           return res.status(400).json({
-            error: 'user already exists',
+            error: err.message,
           });
         }
         return res.status(201).json({
