@@ -135,7 +135,7 @@
         data: { ...data, isSeller: document.getElementById("exampleCheck1").checked },
         success: function (response) {
           alert("success");
-          document.location.reload();
+          window.location.reload()
         },
         error: function (error) {
           console.log(error);

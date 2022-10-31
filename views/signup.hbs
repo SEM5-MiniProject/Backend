@@ -194,7 +194,7 @@
         data: { ...data, isSeller: document.getElementById("exampleCheck1").checked },
         success: function (response) {
           alert("success");
-          document.location.reload();
+          window.location.reload()
         },
         error: function (error) {
           alert(error.responseJSON.error ? error.responseJSON.error:error.message);
