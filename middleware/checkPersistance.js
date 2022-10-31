@@ -6,6 +6,7 @@ const persistance = async (req, res, next) => {
     const token = req.cookies.token;
     if (!token) {
       req.persist = false;
+      return next();
     }
     const decoded = await verifyToken(token);
     if(decoded.user.role === 'user') {

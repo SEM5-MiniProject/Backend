@@ -22,8 +22,7 @@
 
           <!-- menu start -->
           <nav class="main-menu">
-            {{#ifEquals persist "false"}}
-              
+            {{#ifEquals persist false}}
             <ul>
               <li class="current-list-item"><a href="/">Home</a>
               </li>
@@ -42,13 +41,18 @@
                 </div>
               </li>
             </ul>
+            {{else ifEquals persist "user"}}
+            <ul>
+              <li><a href="/test">Dashboard</a>
+              <li><a href="/myprofile">My User Profile</a>
+              <li><a href="/user/api/logout">Logout</a></li>
+            </ul>
             {{else}}
-                          <ul>
-                <li><a href="/test">Dashboard</a>
-                <li><a href="/myprofile">My Profile</a>
-                <li><a href="/signin">Logout</a></li>
-              </ul>
-              
+            <ul>
+              <li><a href="/test">Dashboard</a>
+              <li><a href="/myprofile">My Profile</a>
+              <li><a href="/user/api/logout">Logout</a></li>
+            </ul>
             {{/ifEquals}}
           </nav>
           <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
