@@ -6233,7 +6233,8 @@
     "unpipe" "1.0.0"
 
 "react-currency-input-field@git+https://github.com/dziraf/react-currency-input-field.git":
-  "resolved" "git+ssh://git@github.com/dziraf/react-currency-input-field.git#8899f7505f854eaeb58cc9674b69f0f379e65ca1"
+  "integrity" "sha512-L1BbrBX2fn0bCPvgY4mgRYP9EdYembGvMttyMSo2wCNWwoBP3IQ7lSoTkFOKgHJg4G0m3PFhwvwvVRDD2f9ktA=="
+  "resolved" "git+ssh://git@github.com/dziraf/react-currency-input-field.git"
   "version" "3.6.4"
 
 "react-datepicker@^4.8.0":
