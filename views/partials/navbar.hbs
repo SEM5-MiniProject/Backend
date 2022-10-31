@@ -29,7 +29,7 @@
               <li><a href="about.html">About</a></li>
 
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="shop.html">Shop</a>
+              <li><a href="/shop">Shop</a>
               </li>
 
               <li><a href="/signin">Sign in</a></li>
@@ -44,6 +44,7 @@
             {{else ifEquals persist "user"}}
             <ul>
               <li><a href="/test">Dashboard</a>
+              <li><a href="/shop">Shop</a>
               <li><a href="/myprofile">My User Profile</a>
               <li><a href="/user/api/logout">Logout</a></li>
             </ul>
@@ -51,6 +52,7 @@
             <ul>
               <li><a href="/test">Dashboard</a>
               <li><a href="/myprofile">My Profile</a>
+              <li><a href="/shop">Shop</a>
               <li><a href="/user/api/logout">Logout</a></li>
             </ul>
             {{/ifEquals}}
