@@ -12,6 +12,7 @@ const validateSchema = (schema) => async (req, res, next) => {
     );
     next();
   } catch (err) {
+    console.log(req.body)
     log.error(err);
     res.status(409).json({ error: err.message });
   }
