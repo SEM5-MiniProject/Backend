@@ -19,6 +19,9 @@ app.use(cookieParser());
 const persistance = require('./middleware/checkPersistance');
 app.use(persistance);
 var hbs = require('hbs');
+const auth = require('./middleware/auth');
+const User = require('./model/user');
+const Seller = require('./model/seller');
 app.set('view engine', 'hbs');
 app.use(express.static(path.resolve(__dirname, './static')))
 hbs.registerPartials(__dirname + '/views/partials');
@@ -35,16 +38,28 @@ app.get('/', (req, res) => {
   });
 });
 app.get('/signin', (req, res) => {
-  res.render('signin');
+  res.render('signin',{
+    persist: req.persist,
+  });
 });
 app.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup',{
+    persist: req.persist,
+  });
 });
 app.get('/test',(req,res)=>{
   res.render('test')
 })
-app.get('/myprofile',(req,res)=>{
-  res.render('myprofile')
+app.get('/myprofile',auth,async (req,res)=>{
+  if (req.user && req.user.id){
+    const user = await User.findById(req.user.id);
+    console.log(user);
+    res.render('myprofile',{user:user});
+  }
+  if (req.seller && req.seller.id){
+    const seller = await Seller.findById(req.seller.id);
+    res.render('myprofile',{user:seller});
+  }
 })
 app.get('/shop',(req,res)=>{
   res.render('shop')
