@@ -24,5 +24,5 @@
 <h4> How To Run </h4>
 
 ```
-    yarn start-dev
+    yarn run dev
 ```
