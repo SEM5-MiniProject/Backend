@@ -16,13 +16,23 @@ app.use(adminJs.options.rootPath, router);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+const persistance = require('./middleware/checkPersistance');
+app.use(persistance);
+var hbs = require('hbs');
 app.set('view engine', 'hbs');
 app.use(express.static(path.resolve(__dirname, './static')))
+hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 app.use('/user', require('./routes/auth'));
 app.use('/seller', require('./routes/seller'));
+app.use('/profile', require('./routes/profile'));
 app.use('/api-docs', serve, setup);
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index',{
+    persist: req.persist,
+  });
 });
 app.get('/signin', (req, res) => {
   res.render('signin');
@@ -30,7 +40,15 @@ app.get('/signin', (req, res) => {
 app.get('/signup', (req, res) => {
   res.render('signup');
 });
-
+app.get('/test',(req,res)=>{
+  res.render('test')
+})
+app.get('/myprofile',(req,res)=>{
+  res.render('myprofile')
+})
+app.get('/shop',(req,res)=>{
+  res.render('shop')
+})
 app.listen(PORT, async () => {
   await connectDB();
 
