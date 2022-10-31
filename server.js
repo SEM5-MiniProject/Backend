@@ -34,6 +34,9 @@ app.get('/signup', (req, res) => {
 app.get('/test',(req,res)=>{
   res.render('test')
 })
+app.get('/myprofile',(req,res)=>{
+  res.render('myprofile')
+})
 app.listen(PORT, async () => {
   await connectDB();
 
