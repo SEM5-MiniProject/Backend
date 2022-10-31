@@ -116,7 +116,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
-
+package-lock.json
 # Upload directory
 uploads/*
 !uploads/.gitkeep
