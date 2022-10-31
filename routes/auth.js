@@ -101,4 +101,5 @@ router.post('/api/signup', validateRequest(userSignupSchema), auth.userSignup);
  */
 router.post('/api/login', validateRequest(userLoginSchema), auth.userLogin);
 
+router.get('/api/logout', auth.userLogout);
 module.exports = router;
