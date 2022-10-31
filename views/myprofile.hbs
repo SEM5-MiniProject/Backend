@@ -33,90 +33,17 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- responsive -->
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+      nav a{
+        color: #F28123 !important;
+      }
+    </style>
 </head>
 
 <body>
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
 
-    <!-- header -->
-    <div class="top-header-area" id="sticker">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-sm-12 text-center">
-                    <div class="main-menu-wrap">
-                        <!-- logo -->
-                        <div class="site-logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo.png" alt="">
-                            </a>
-                        </div>
-                        <!-- logo -->
+    {{> navbar}}
 
-                        <!-- menu start -->
-                        <nav class="main-menu">
-                            <ul>
-                                <li class="current-list-item"><a href="#">Home</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index.html">Static Home</a></li>
-                                        <li><a href="index_2.html">Slider Home</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html" style="color: #F28123; ;">About</a></li>
-                                <li><a href="#" style="color: #F28123; ;">Pages</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="404.html" style="color: #F28123; ;">404 page</a></li>
-                                        <li><a href="about.html" style="color: #F28123; ;">About</a></li>
-                                        <li><a href="cart.html" style="color: #F28123; ;">Cart</a></li>
-                                        <li><a href="checkout.html" style="color: #F28123; ;">Check Out</a></li>
-                                        <li><a href="contact.html" style="color: #F28123; ;">Contact</a></li>
-                                        <li><a href="news.html" style="color: #F28123; ;">News</a></li>
-                                        <li><a href="shop.html" style="color: #F28123; ;">Shop</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="news.html" style="color: #F28123; ;">News</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="news.html" style="color: #F28123; ;">News</a></li>
-                                        <li><a href="single-news.html" style="color: #F28123; ;">Single News</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html" style="color: #F28123; ;">Contact</a></li>
-                                <li><a href="shop.html" style="color: #F28123; ;">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop.html" style="color: #F28123; ;">Shop</a></li>
-                                        <li><a href="checkout.html" style="color: #F28123; ;">Check Out</a></li>
-                                        <li><a href="single-product.html" style="color: #F28123; ;">Single Product</a>
-                                        </li>
-                                        <li><a href="cart.html" style="color: #F28123; ;">Cart</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="/signin" style="color: #F28123; ;">Sign in</a></li>
-                                <li><a href="/signup" style="color: #F28123; ;">Sign up</a></li>
-                                <li>
-                                    <div class="header-icons">
-                                        <a class="shopping-cart" href="cart.html" style="color: #F28123; ;"><i
-                                                class="fas fa-shopping-cart"></i></a>
-                                        <a class="mobile-hide search-bar-icon" href="#" style="color: #F28123; ;"><i
-                                                class="fas fa-search"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-                        <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                        <div class="mobile-menu"></div>
-                        <!-- menu end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{!-- Hero --}}
 
     <section class="text-light my-5 pt-lg-5 text-center">
         <div class="container">
@@ -297,7 +224,7 @@
             </div>
         </div>
     </section>
-
+  {{> footer}}
     <!-- jquery -->
     <script src="assets/js/jquery-1.11.3.min.js"></script>
     <!-- bootstrap -->
