@@ -18,6 +18,10 @@ html {
   height: 100%;
 }
 
+.head-main{
+  color: #F28123;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -1361,7 +1365,7 @@ a.mobile-show.search-bar-icon:hover {
 
 ----------------------------------------------------------------------------- */
 .hero-bg {
-  background-image: url(../img/hero-bg.jpg);
+  background-image: url(../img/hero-bg-4.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
