@@ -56,16 +56,13 @@ app.use('/api-docs', serve, setup);
 app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/seller'));
 app.use('/', require('./routes/static'));
+app.use('/', require('./routes/cart'));
 app.get('/', (req, res) => {
   res.render('index', {
     persist: req.persist,
   });
 });
-app.get('/cart', (req, res) => {
-  res.render('cart', {
-    persist: req.persist,
-  });
-});
+
 app.get('/checkout', (req, res) => {
   res.render('checkout', {
     persist: req.persist,
@@ -74,6 +71,10 @@ app.get('/checkout', (req, res) => {
 app.get('/shop', (req, res) => {
   res.render('shop', { persist: req.persist })
 })
+// Catch Error 404
+app.use((req, res) => {
+  res.status(404).render('404', { persist: req.persist });  
+});
 app.listen(PORT, async () => {
   await connectDB();
 
