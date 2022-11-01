@@ -18,6 +18,7 @@
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 	<!-- owl carousel -->
 	<link rel="stylesheet" href="assets/css/owl.carousel.css">
 	<!-- magnific popup -->
@@ -63,9 +64,9 @@
             <ul>
               <li class="current-list-item"><a href="/">Home</a>
               </li>
-              <li><a href="about.html">About</a></li>
+              <li><a href="#about">About</a></li>
 
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#contact">Contact</a></li>
               {{!-- <li><a href="shop.html">Shop</a> --}}
               </li>
 
@@ -144,7 +145,7 @@
 
 			<div class="row">
 				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="list-box d-flex align-items-center">
+					<div class="list-box d-flex align-items-center justify-content-center">
 						<div class="list-icon">
 							<i class="fas fa-shipping-fast"></i>
 						</div>
@@ -155,7 +156,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="list-box d-flex align-items-center">
+					<div class="list-box d-flex align-items-center justify-content-center">
 						<div class="list-icon">
 							<i class="fas fa-phone-volume"></i>
 						</div>
@@ -166,7 +167,7 @@
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
-					<div class="list-box d-flex justify-content-start align-items-center">
+					<div class="list-box d-flex justify-content-start align-items-center justify-content-center">
 						<div class="list-icon">
 							<i class="fas fa-sync"></i>
 						</div>
@@ -188,7 +189,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">
-						<h3><span class="orange-text">Our</span> Products</h3>
+						<h3><span class="orange-text">Our Popular</span> Products</h3>
 						<p>We aim to cater our customer with the highest quality of home cooked food to fulfill their
 							health needs.
 						</p>
@@ -242,7 +243,7 @@
 						<div class="single-testimonial-slider">
 							<h3><span class="orange-text">Our</span> Team</h3>
 							<div class="client-avater">
-								<img src="assets/img/avaters/avatar1.png" alt="">
+								<img src="assets/img/avaters/salman.jpg" alt="">
 							</div>
 							<div class="client-meta">
 								<h3>Salman Adhikari<span>Founder</span></h3>
@@ -323,7 +324,7 @@
 						<div class="single-testimonial-slider">
 							<h3><span class="orange-text">Our</span> Team</h3>
 							<div class="client-avater">
-								<img src="assets/img/avaters/avatar3.png" alt="">
+								<img src="assets/img/avaters/ruchir.jpeg" alt="">
 							</div>
 							<div class="client-meta">
 								<h3>Ruchir Rao <span>Founder</span></h3>
@@ -355,21 +356,23 @@
 	<!-- end testimonail-section -->
 	
 	<!-- advertisement section -->
-	<div class="abt-section mb-150">
+	<div class="abt-section mb-100" id="about">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<div class="abt-bg">
-						<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ" class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
+				<div class="col-lg-6 col-md-12 mt-4">
+					<div class="abt-bg d-none d-md-flex">
+						<a href="#"><img src="assets/img/heart.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
-					<div class="abt-text">
-						<p class="top-sub">Since Year 1999</p>
-						<h2>We are <span class="orange-text">Fruitkha</span></h2>
-						<p>Etiam vulputate ut augue vel sodales. In sollicitudin neque et massa porttitor vestibulum ac vel nisi. Vestibulum placerat eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien sed, interdum velit. Nam eu molestie lorem.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente facilis illo repellat veritatis minus, et labore minima mollitia qui ducimus.</p>
-						<a href="about.html" class="boxed-btn mt-4">know more</a>
+					<div class="abt-text mt-4"  id="about">
+						<p class="top-sub">Founded in 2022</p>
+						<h2>We are <span class="orange-text">Meal Diaries</span></h2>
+						<p class="lead text-dark p-2">Meal Diaries is a food delivery application specially designed for delivering variety of food not only to 
+							regular customers, but also to people who specially require freshly home cooked meals.
+							It offers food from cloud kitchens run by individuals with a variety 
+							of cuisines available. </p>
+						<a href="about.html" class="boxed-btn mt-4">Know More</a>
 					</div>
 				</div>
 			</div>
@@ -386,15 +389,15 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium
-							doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p class = "justify-content-start p-1">Meal Diaries is a food delivery application specially designed for delivering variety of food not only 
+							to regular customers, but also to people who specially require freshly home cooked meals.</p>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-6" id="contact">
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+							<li>SIES Graduate School of Technology, Navi Mumbai</li>
 							<li>support@mealdiaries.com</li>
 							<li>+00 111 222 3333</li>
 						</ul>
@@ -404,11 +407,11 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="#">Home</a></li>
+							<li><a href="#about">About</a></li>
 							{{!-- <li><a href="services.html">Shop</a></li> --}}
 							{{!-- <li><a href="news.html">News</a></li> --}}
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="#contact">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -432,7 +435,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy;<a href="https://imransdesign.com/"></a> All Rights Reserved.<br>
+					<p>Copyrights &copy;All Rights Reserved.<br>
 					</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
@@ -442,7 +445,7 @@
 							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
 							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+							{{!-- <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li> --}}
 						</ul>
 					</div>
 				</div>
@@ -456,6 +459,9 @@
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
 	<!-- bootstrap -->
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 	<!-- count down -->
 	<script src="assets/js/jquery.countdown.js"></script>
 	<!-- isotope -->
