@@ -4,7 +4,7 @@ const Food = require("../model/food");
 const uuidv4 = require('uuid/v4');
 
 const getDashbord = (req, res) => {
-  res.render('dashbord', {
+  res.render('index', {
     persist: req.persist,
   });
 };

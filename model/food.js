@@ -34,11 +34,13 @@ const FoodSchema = new mongoose.Schema({
   isVeg: {
     type: Boolean,
     required: [true, 'Please enter isVeg'],
+    default: false,
     trim: true,
   },
   isAvailable: {
     type: Boolean,
     required: [true, 'Please enter isAvailable'],
+    default:false,
     trim: true,
   },
   belongsTo: {
