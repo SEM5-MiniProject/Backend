@@ -19,9 +19,6 @@ app.use(cookieParser());
 const persistance = require('./middleware/checkPersistance');
 app.use(persistance);
 const hbs = require('hbs');
-const auth = require('./middleware/auth');
-const User = require('./model/user');
-const Seller = require('./model/seller');
 const flash = require('express-flash');
 const session = require('express-session');
 app.set('view engine', 'hbs');
@@ -55,6 +52,7 @@ app.use('/profile', require('./routes/api/profile'));
 app.use('/api-docs', serve, setup);
 app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/seller'));
+app.use('/', require('./routes/static'));
 app.get('/', (req, res) => {
   res.render('index', {
     persist: req.persist,
@@ -70,22 +68,6 @@ app.get('/checkout', (req, res) => {
     persist: req.persist,
   });
 });
-app.get('/myprofile', auth, async (req, res) => {
-  if (req.user && req.user.id) {
-    const user = await User.findById(req.user.id);
-    console.log(user);
-    res.render('myprofile', { user: user, persist: req.persist });
-  }
-  if (req.seller && req.seller.id) {
-    const seller = await Seller.findById(req.seller.id);
-    res.render('myprofile', { user: seller, persist: req.persist });
-  }
-})
-app.get('/myprofile/:id', async (req, res) => {
-  const user = await User.findById(req.params.id);
-  const seller = await Seller.findById(req.params.id);
-  return res.render('myprofile', { user: user ? user : seller, persist: req.persist ,message:true});
-})
 app.get('/shop', (req, res) => {
   res.render('shop', { persist: req.persist })
 })

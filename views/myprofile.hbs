@@ -107,58 +107,58 @@
                       <h5 class="modal-title" id="editLabel">Edit Profile</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                      <p class="lead text-dark">Please do the changes you wish to make
-                      </p>
-                      <form>
+                    <form action="/myprofile" method="post">
+                      <div class="modal-body">
+                        <p class="lead text-dark">Please do the changes you wish to make
+                        </p>
                         <div class="md-3">
                           <label for="last-name" class="col-form-label">
                             Name:
                           </label>
-                          <input type="text" class="form-control" id="name" value={{user.name}}>
+                          <input type="text" class="form-control" id="name" value="{{user.name}}" name="name">
                         </div>
                         <div class="md-3">
                           <label for="phone" class="col-form-label">
                             Phone:
                           </label>
-                          <input type="text" value={{ user.phoneNo }} class="form-control" id="phone">
+                          <input type="text" value="{{ user.phoneNo }}" class="form-control" id="phone" name="phoneNo">
                         </div>
                         <div class="md-3">
                           <label for="phone" class="col-form-label">
                             House No.:
                           </label>
-                          <input type="text" class="form-control" value={{user.houseNo}} id="house-no">
+                          <input type="text" name="houseNo" class="form-control" value="{{user.houseNo}}" id="house-no">
                         </div>
                         <div class="md-3">
                           <label for="phone" class="col-form-label">
                             Sector:
                           </label>
-                          <input type="text" value={{ user.sector}} class="form-control" id="sector">
+                          <input type="text" name="sector" value="{{ user.sector}}" class="form-control" id="sector">
                         </div>
                         <div class="md-3">
                           <label for="phone" class="col-form-label">
                             City:
                           </label>
-                          <input type="text" value={{ user.city}} class="form-control" id="city">
+                          <input type="text" name="city" value="{{ user.city}}" class="form-control" id="city">
                         </div>
                         <div class="md-3">
                           <label for="phone" class="col-form-label">
                             State:
                           </label>
-                          <input type="text" value={{user.state}} class="form-control" id="state">
+                          <input type="text" name="state" value="{{user.state}}" class="form-control" id="state">
                         </div>
                         <div class="md-3">
                           <label for="phone" class="col-form-label">
                             PIN Code:
                           </label>
-                          <input type="text" value={{user.pincode}} class="form-control" id="pin">
+                          <input type="text" name="pincode" value="{{user.pincode}}" class="form-control" id="pin">
                         </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
