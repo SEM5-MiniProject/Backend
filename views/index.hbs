@@ -105,6 +105,8 @@
   <!-- end features list section -->
 
 	<!-- product section -->
+  {{#ifNotEquals persist "seller"}}
+    
 	<div class="product-section mt-100">
 		<div class="container">
 			<div class="row">
@@ -153,127 +155,11 @@
 		</div>
 	</div>
 	<!-- end product section -->
+  {{/ifNotEquals}}
 
 
 	<!-- testimonail-section -->
-	<div class="testimonail-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="testimonial-sliders">
-						<div class="single-testimonial-slider">
-							<h3><span class="orange-text">Our</span> Team</h3>
-							<div class="client-avater">
-								<img src="assets/img/avaters/salman.jpg" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Salman Adhikari<span>Founder</span></h3>
-								<p class="testimonial-body lead">
-									Department of Information Technology
-								</p>
-								<p class="testimonial-body lead">
-									SIES Graduate School of Technology
-								</p>
-								<p class="testimonial-body lead">
-									University of Mumbai
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-							<div class="text-center mt-5">
-								<a href="#"><i class="bi bi-twitter mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-facebook mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-linkedin mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-instagram mx-3 lead"></i></a>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<h3><span class="orange-text">Our</span> Team</h3>
-							<div class="client-avater">
-								<img src="assets/img/avaters/mayank.jpg" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Mayank Raj <span>Founder</span></h3>
-								<p class="testimonial-body lead">
-									Department of Information Technology
-								</p>
-								<p class="testimonial-body lead">
-									SIES Graduate School of Technology
-								</p>
-								<p class="testimonial-body lead">
-									University of Mumbai
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-							<div class="text-center mt-5">
-								<a href="#"><i class="bi bi-twitter mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-facebook mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-linkedin mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-instagram mx-3 lead"></i></a>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<h3><span class="orange-text">Our</span> Team</h3>
-							<div class="client-avater">
-								<img src="assets/img/avaters/kunal.jpg" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Kunal Kumbhare <span>Founder</span></h3>
-								<p class="testimonial-body lead">
-									Department of Information Technology
-								</p>
-								<p class="testimonial-body lead">
-									SIES Graduate School of Technology
-								</p>
-								<p class="testimonial-body lead">
-									University of Mumbai
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-							<div class="text-center mt-5">
-								<a href="#"><i class="bi bi-twitter mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-facebook mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-linkedin mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-instagram mx-3 lead"></i></a>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<h3><span class="orange-text">Our</span> Team</h3>
-							<div class="client-avater">
-								<img src="assets/img/avaters/ruchir.jpeg" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Ruchir Rao <span>Founder</span></h3>
-								<p class="testimonial-body lead">
-									Department of Information Technology
-								</p>
-								<p class="testimonial-body lead">
-									SIES Graduate School of Technology
-								</p>
-								<p class="testimonial-body lead">
-									University of Mumbai
-								</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-							<div class="text-center mt-5">
-								<a href="#"><i class="bi bi-twitter mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-facebook mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-linkedin mx-3 lead"></i></a>
-								<a href="#"><i class="bi bi-instagram mx-3 lead"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+{{> testimonail}}
 	<!-- end testimonail-section -->
 	
 	<!-- advertisement section -->
@@ -293,7 +179,7 @@
 							regular customers, but also to people who specially require freshly home cooked meals.
 							It offers food from cloud kitchens run by individuals with a variety 
 							of cuisines available. </p>
-						<a href="about.html" class="boxed-btn mt-4">Know More</a>
+						<a href="/about" class="boxed-btn mt-4">Know More</a>
 					</div>
 				</div>
 			</div>

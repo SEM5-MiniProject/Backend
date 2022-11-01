@@ -34,5 +34,8 @@ router.get('/myprofile/:id', async (req, res) => {
   const seller = await Seller.findById(req.params.id);
   return res.render('myprofile', { user: user ? user : seller, persist: req.persist ,message:true});
 })
+router.get('/about',(req,res)=>{
+  res.render('about',{persist:req.persist});
+})
 
 module.exports = router;

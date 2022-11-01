@@ -26,7 +26,7 @@
             <ul>
               <li class="current-list-item"><a href="/">Home</a>
               </li>
-              <li><a href="about.html">About</a></li>
+              <li><a href="/about">About</a></li>
 
               <li><a href="contact.html">Contact</a></li>
               <li><a href="/shop">Shop</a>
@@ -44,17 +44,19 @@
             {{else ifEquals persist "user"}}
             <ul>
               <li><a href="/dashboard">Dashboard</a>
+              <li><a href="/about">About</a></li>
               <li><a href="/shop">Shop</a>
+              <li><a href="/cart">My Cart</a>
               <li><a href="/myprofile">My User Profile</a>
               <li><a href="/logout">Logout</a></li>
             </ul>
             {{else}}
             <ul>
               <li><a href="/dashboard">Dashboard</a>
+              <li><a href="/about">About</a></li>
               <li><a href="/myprofile">My Profile</a>
               <li><a href="/addproduct">Add Product</a>
               <li><a href="/myproducts">My Product</a>
-              <li><a href="/shop">Shop</a>
               <li><a href="/logout">Logout</a></li>
             </ul>
             {{/ifEquals}}

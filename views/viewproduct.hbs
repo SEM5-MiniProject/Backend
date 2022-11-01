@@ -110,11 +110,11 @@
             {{/if}}
             <p class="product-price">
               {{#if this.offer}}
-                <del>{{ this.price }}</del>
+                <del>₹{{ this.price }}</del>
                 <br>
-                <span>{{ this.offer.newprice }}</span>
+                <span>₹{{ this.offer.newprice }}</span>
               {{else}}
-                {{ this.price }}
+                ₹{{ this.price }}
               {{/if}}
                </p>
             <a type="button" class="cart-btn" data-toggle="modal" data-target="#example{{ this._id }}"><i
