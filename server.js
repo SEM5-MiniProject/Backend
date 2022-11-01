@@ -30,6 +30,19 @@ hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+hbs.registerHelper('splitDate', function(title) {
+  var t =  title.toString().split("05");
+  return t[0];
+});
+// convert date to javascript date in yyyy-mm-dd format
+hbs.registerHelper('date', function(date) {
+  var t =  date.toString().split("05");
+  var d = new Date(t[0]);
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1;
+  var day = d.getDate().toString().length == 1 ? '0' + d.getDate() : d.getDate();
+  return year + "-" + month + "-" + day;
+});
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,

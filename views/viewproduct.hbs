@@ -78,10 +78,14 @@
     <div class="container">
       <div class="row product-lists">
         {{#each foods }}
-
         <div class="col-lg-4 col-md-6 text-center strawberry">
           <div class="single-product-item">
             <div class="product-image">
+              {{#if this.offer}}
+              <div class="product-badge offer-badge">
+                <p class="badge badge-success">{{ this.offer.discount }} - {{splitDate this.offer.validTill }}</p>
+              </div>
+              {{/if}}
               <img src="{{ this.image }}" alt="" height="300px">
             </div>
             <h3>{{ this.name }}</h3>
@@ -104,16 +108,29 @@
               <span class="badge badge-danger">Not Available</span>
             </h3>
             {{/if}}
-            <p class="product-price">{{ this.price }} </p>
+            <p class="product-price">
+              {{#if this.offer}}
+                <del>{{ this.price }}</del>
+                <br>
+                <span>{{ this.offer.newprice }}</span>
+              {{else}}
+                {{ this.price }}
+              {{/if}}
+               </p>
             <a type="button" class="cart-btn" data-toggle="modal" data-target="#example{{ this._id }}"><i
                 class="fas fa-pen"></i> Edit Food</a>
-
-            {{!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#example{{ this._id }}">
-              Launch demo modal
-            </button> --}}
             <a type="button" class="cart-btn" data-toggle="modal" data-target="#example2{{ this._id }}"><i
-                class="fas fa-pen"></i> Add Offer</a>
+                class="fas fa-pen"></i> 
+                {{#if this.offer}}
+                  Edit Offer
+                {{else}}
+                  Add Offer
+                {{/if}}
+                </a>
+                {{#if this.offer}}
+                  <a  href="/deleteoffer/{{ this._id }}" class="cart-btn mt-4"><i
+                class="fas fa-trash"></i> Delete Offer</a>
+                {{/if}}
             <!-- Modal -->
             <div class="modal fade" id="example2{{ this._id }}" tabindex="-1" role="dialog"
               aria-labelledby="example2{{ this._id }}Label" aria-hidden="true">
@@ -125,44 +142,63 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-lg-8">
-                        <div class="checkout-accordion-wrap">
-                          <div class="accordion" id="accordionExample">
-                            <div class="card single-accordion">
-                              <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                  <button class="btn btn-link" type="button" data-toggle="collapse"
-                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Your Product
-                                  </button>
-                                </h5>
-                              </div>
+                  <form action=
+                  {{#if this.offer}}
+                  "/editOffer/{{ this._id }}"
+                  
+                  {{else}}
+                    
+                  "/addoffer/{{ this._id }}" 
+                  {{/if}}
+                  method="post">
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="checkout-accordion-wrap">
+                            <div class="accordion" id="accordionExample">
+                              <div class="card single-accordion">
+                                <div class="card-header" id="headingOne">
+                                  <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                      data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Your Product
+                                    </button>
+                                  </h5>
+                                </div>
 
-                              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body">
-                                  <div class="billing-address-form">
-                                    <form action="index.html">
-                                      <p><input type="date" placeholder="11/1/2022"></p>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                  data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    <div class="billing-address-form">
                                       
-                                      <p><input type="number" placeholder="Discount"></p>
+                                      <p><input type="date" name="validTill" value=
+                                      {{#if this.offer}}
+                                        "{{date this.offer.validTill}}"
+                                      {{/if}}></p>
+
+                                      <p><input type="number" name="discount" placeholder="Discount"
+                                      {{#if this.offer}}
+                                        value="{{ this.offer.discount }}"
+                                      
+                                        
+                                      {{/if}}
+                                      ></p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
+                          </div>
                         </div>
+
                       </div>
-                 
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -176,89 +212,91 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-lg-8">
-                        <div class="checkout-accordion-wrap">
-                          <div class="accordion" id="accordionExample">
-                            <div class="card single-accordion">
-                              <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                  <button class="btn btn-link" type="button" data-toggle="collapse"
-                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Your Product
-                                  </button>
-                                </h5>
-                              </div>
+                  <form action="/editproduct/{{ this._id }}" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="checkout-accordion-wrap">
+                            <div class="accordion" id="accordionExample">
+                              <div class="card single-accordion">
+                                <div class="card-header" id="headingOne">
+                                  <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                      data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Your Product
+                                    </button>
+                                  </h5>
+                                </div>
 
-                              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body">
-                                  <div class="billing-address-form">
-                                    <form action="index.html">
-                                      <p><input type="text" placeholder="Name" value="{{ this.name }}"></p>
-                                      <p><input type="file" placeholder="Image" onchange="readURL(this,'img{{ this._id }}');"></p>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                  data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    <div class="billing-address-form">
+                                      <p><input type="text" placeholder="Name" value="{{ this.name }}" name="name"></p>
+                                      <p><input type="file" placeholder="Image"
+                                          onchange="readURL(this,'img{{ this._id }}');" name="image"></p>
                                       <img src="{{ this.image }}" alt="previewImage" height="100px"
                                         id="img{{ this._id }}">
-                                      <p><input type="number" placeholder="Price ₹" value="{{ this.price }}"></p>
-                                      <p><input name="bill" id="bill" value="{{ this.description }}"
+                                      <p><input type="number" name="price" placeholder="Price ₹"
+                                          value="{{ this.price }}"></p>
+                                      <p><input name="description" id="bill" value="{{ this.description }}"
                                           placeholder="Description"></input></p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="card single-accordion">
-                              <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                  <input type="checkbox" id="IsVeg" name="IsVeg" checked="{{ this.isVeg }}">
-                                  <label for="IsVeg"> Is Veg</label><br>
-                                </h5>
-                              </div>
+                              <div class="card single-accordion">
+                                <div class="card-header" id="headingTwo">
+                                  <h5 class="mb-0">
+                                    <input type="checkbox" id="IsVeg" name="isVeg" {{#if this.isVeg}} checked {{/if}}>
+                                    <label for="IsVeg"> Is Veg</label><br>
+                                  </h5>
+                                </div>
 
-                            </div>
-                            <div class="card single-accordion">
-                              <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                  <input type="checkbox" id="IsAvailable" name="IsAvailable"
-                                    checked="{{ this.isAvailable }}">
-                                  <label for="IsAvailable"> Is Available</label><br>
-                                </h5>
                               </div>
+                              <div class="card single-accordion">
+                                <div class="card-header" id="headingThree">
+                                  <h5 class="mb-0">
+                                    <input type="checkbox" id="IsAvailable" name="isAvailable" {{#if this.isAvailable}}
+                                      checked {{/if}}>
+                                    <label for="IsAvailable"> Is Available</label><br>
+                                  </h5>
+                                </div>
 
+                              </div>
                             </div>
+
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="order-details-wrap">
+                            <table class="current-list-item">
+
+                              <label> Select Category: </label> <br>
+                              <select name="category">
+
+                                <option value="Breakfast"> Breakfast
+                                </option>
+                                <option value="Lunch"> Lunch
+                                </option>
+                                <option value="Dinner"> Dinner
+                                </option>
+                                <option value="Snacks"> Snacks
+                                </option>
+                              </select>
+
+                            </table><br><br><br><br><br>
+
                           </div>
 
                         </div>
                       </div>
-                      <div class="col-lg-4">
-                        <div class="order-details-wrap">
-                          <table class="current-list-item">
-
-                            <label> Select Category: </label> <br>
-                            <select>
-
-                              <option value="Breakfast"> Breakfast
-                              </option>
-                              <option value="Lunch"> Lunch
-                              </option>
-                              <option value="Dinner"> Dinner
-                              </option>
-                              <option value="Snacks"> Snacks
-                              </option>
-                            </select>
-
-                          </table><br><br><br><br><br>
-                          <a href="#" class="boxed-btn">Proceed...</a>
-                        </div>
-                        </form>
-
-                      </div>
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -295,21 +333,21 @@
   <script src="assets/js/sticker.js"></script>
   <!-- main js -->
   <script src="assets/js/main.js"></script>
-<script>
-      function readURL(input,id) {
-        console.log("readURL");
-        const newId = "#"+id;
-        console.log(newId,id);
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $(newId)
-              .attr('src', e.target.result)
-          };
-          reader.readAsDataURL(input.files[0]);
-        }
+  <script>
+    function readURL(input, id) {
+      console.log("readURL");
+      const newId = "#" + id;
+      console.log(newId, id);
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $(newId)
+            .attr('src', e.target.result)
+        };
+        reader.readAsDataURL(input.files[0]);
       }
-    </script>
+    }
+  </script>
 </body>
 
 </html>

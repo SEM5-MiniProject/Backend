@@ -20,6 +20,8 @@ const OfferSchema = new Schema({
     type: Number,
     required: true,
   }
+},{
+  timestamps: true,
 });
 
 // calculate new price
