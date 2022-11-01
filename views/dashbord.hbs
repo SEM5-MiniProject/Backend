@@ -65,6 +65,15 @@
             <div class="hero-text-tablecell">
               <p class="subtitle">Fresh & Organic</p>
               <h1>Delicious Seasonal Fruits</h1>
+                {{#if message.success}}
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message.success }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {{/if}}
               <div class="hero-btns">
                 <a href="shop.html" class="boxed-btn">Fruit Collection</a>
                 <a href="contact.html" class="bordered-btn">Contact Us</a>

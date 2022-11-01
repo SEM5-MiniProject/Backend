@@ -76,6 +76,15 @@
   <!-- check out section -->
   <div class="checkout-section mt-150 mb-150">
     <div class="container">
+  {{#if message.success}}
+
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message.success }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {{/if}}
       <div class="row">
         <div class="col-lg-8">
           <div class="checkout-accordion-wrap">
@@ -94,12 +103,16 @@
                   data-parent="#accordionExample">
                   <div class="card-body">
                     <div class="billing-address-form">
-                      <form action="index.html">
-                        <p><input type="text" placeholder="Name"></p>
-                        <p><input type="file" placeholder="Image"></p>
+                      <form action="/addproduct" method="post" enctype="multipart/form-data">
+                        <p><input type="text" placeholder="Name" id="name" name="name"></p>
+                        <p><input type="file" placeholder="Image" onchange="readURL(this);" id="image" name="image"></p>
+                        <div class="img-div" style="display: none;" id="img-div">
 
-                        <p><input type="number" placeholder="Price ₹"></p>
-                        <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Description"></textarea></p>
+                          <img id="blah" src="#" class="marksheet-img mb-4" alt="" height="100px">
+                        </div>
+                        <p><input type="number" placeholder="Price ₹" id="price" name="price"></p>
+                        <p><input name="description" id="description"
+                            placeholder="Description"></input></p>
                     </div>
                   </div>
                 </div>
@@ -107,7 +120,7 @@
               <div class="card single-accordion">
                 <div class="card-header" id="headingTwo">
                   <h5 class="mb-0">
-                    <input type="checkbox" id="IsVeg" name="IsVeg">
+                    <input type="checkbox" id="IsVeg" name="isVeg" value="true">
                     <label for="IsVeg"> Is Veg</label><br>
                   </h5>
                 </div>
@@ -116,7 +129,7 @@
               <div class="card single-accordion">
                 <div class="card-header" id="headingThree">
                   <h5 class="mb-0">
-                    <input type="checkbox" id="IsAvailable" name="IsAvailable">
+                    <input type="checkbox" id="IsAvailable" name="isAvailable" value="true">
                     <label for="IsAvailable"> Is Available</label><br>
                   </h5>
                 </div>
@@ -131,21 +144,20 @@
           <div class="order-details-wrap">
             <table class="current-list-item">
 
-                <label> Select Category: </label> <br>
-                <select>
+              <label> Select Category: </label> <br>
+              <select id="category" name="category">
 
-                  <option value="Breakfast"> Breakfast
-                  </option>
-                  <option value="Lunch"> Lunch
-                  </option>
-                  <option value="Dinner"> Dinner
-                  </option>
-                  <option value="Snacks"> Snacks
-                  </option>
-                </select>
-
+                <option value="breakfast"> Breakfast
+                </option>
+                <option value="launch"> Lunch
+                </option>
+                <option value="dinner"> Dinner
+                </option>
+                <option value="snacks"> Snacks
+                </option>
+              </select>
             </table><br><br><br><br><br>
-            <a href="#" class="boxed-btn">Proceed...</a>
+            <button type="submit" class="boxed-btn">Proceed...</button>
           </div>
           </form>
 
@@ -175,7 +187,65 @@
   <script src="assets/js/sticker.js"></script>
   <!-- main js -->
   <script src="assets/js/main.js"></script>
-
+  <script>
+    function readURL(input) {
+      $("#img-div").show();
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#blah')
+            .attr('src', e.target.result)
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>
+  <script>
+    var fileData;
+    var myFile;
+    $('#image').change(function () {
+      var filereader = new FileReader();
+      filereader.onload = function (event) {
+        fileData = event.target.result;
+      };
+      myFile = $('#image').prop('files')[0];
+      console.log('myfile', myFile)
+      filereader.readAsDataURL(myFile)
+    });
+    function submitForm(e) {
+      e.preventDefault();
+      var name = document.getElementById("name").value;
+      var price = document.getElementById("price").value;
+      var description = document.getElementById("description").value;
+      var IsVeg = document.getElementById("IsVeg").value;
+      var IsAvailable = document.getElementById("IsAvailable").value;
+      var category = document.getElementById("category").value;
+      var image = document.getElementById("image").value;
+      var data = {
+        name,
+        price,
+        description,
+        IsVeg,
+        IsAvailable,
+        category,
+        image: fileData,
+        filename: myFile.name
+      }
+      console.log(data);
+      $.ajax({
+        url: "/addproduct",
+        type: "POST",
+        mimeType: "multipart/form-data",
+        data: data,
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      })
+    }
+  </script>
 </body>
 
 </html>
