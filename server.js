@@ -41,27 +41,25 @@ app.use('/seller', require('./routes/api/seller'));
 app.use('/profile', require('./routes/api/profile'));
 app.use('/api-docs', serve, setup);
 app.use('/',require('./routes/auth'));
+app.use('/',require('./routes/seller'));
 app.get('/', (req, res) => {
   res.render('index',{
     persist: req.persist,
   });
 });
-app.get('/dashboard',(req,res)=>{
-  res.render('test')
-})
 app.get('/myprofile',auth,async (req,res)=>{
   if (req.user && req.user.id){
     const user = await User.findById(req.user.id);
     console.log(user);
-    res.render('myprofile',{user:user});
+    res.render('myprofile',{user:user,persist: req.persist});
   }
   if (req.seller && req.seller.id){
     const seller = await Seller.findById(req.seller.id);
-    res.render('myprofile',{user:seller});
+    res.render('myprofile',{user:seller,persist: req.persist});
   }
 })
 app.get('/shop',(req,res)=>{
-  res.render('shop')
+  res.render('shop',{persist: req.persist})
 })
 app.listen(PORT, async () => {
   await connectDB();
