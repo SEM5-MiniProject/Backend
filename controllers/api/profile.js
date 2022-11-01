@@ -1,5 +1,5 @@
-const Seller = require('../model/seller');
-const User = require('../model/user');
+const Seller = require('../../model/seller');
+const User = require('../../model/user');
 module.exports.getSellerProfile = async (req, res) => {
   try {
     const seller = await Seller.findById(req.params.id);

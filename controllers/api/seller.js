@@ -1,7 +1,7 @@
-const Food = require('../model/food');
-const Offer = require('../model/offer');
-const {storage} = require('../config/firebase')
-const log = require('../log');
+const Food = require('../../model/food');
+const Offer = require('../../model/offer');
+const {storage} = require('../../config/firebase')
+const log = require('../../log');
 const uuidv4 = require('uuid/v4');
 module.exports.addFood = async (req, res) => {
   try {

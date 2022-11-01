@@ -1,20 +1,10 @@
-const User = require('../model/user');
-const Seller = require('../model/seller');
-const { comparePassword } = require('../utils/bcrypt.util');
-const { generateToken } = require('../utils/jwt.util');
-const log = require('../log');
+const User = require('../../model/user');
+const Seller = require('../../model/seller');
+const { comparePassword } = require('../../utils/bcrypt.util');
+const { generateToken } = require('../../utils/jwt.util');
+const log = require('../../log');
 
-const userSignupGet = (req,res)=>{
-  res.render('signup',{
-    persist: req.persist,
-  });
-}
-const userSigninGet = (req,res)=>{
-  res.render('signin',{
-    persist: req.persist,
-  });
-}
-const userSignupPost = (req, res) => {
+const userSignup = (req, res) => {
   try {
     if (req.body.isSeller === 'true') {
       const seller = new Seller(req.body);
@@ -23,8 +13,8 @@ const userSignupPost = (req, res) => {
           log.error(err);
           return res.status(400).json({ error: err.message });
         }
-        return res.status(201).send({
-          url: '/signin',
+        return res.status(201).json({
+          message: 'Signup successfully',
         });
       });
     } else {
@@ -36,8 +26,8 @@ const userSignupPost = (req, res) => {
             error: err.message,
           });
         }
-        return res.status(201).send({
-          url: '/signin',
+        return res.status(201).json({
+          message: 'Signup successfully',
         });
       });
     }
@@ -46,7 +36,8 @@ const userSignupPost = (req, res) => {
     res.status(500).json({ error: 'Error creating user' });
   }
 };
-const userSigninPost = async (req, res) => {
+
+const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).select('+password');
@@ -58,8 +49,9 @@ const userSigninPost = async (req, res) => {
       }
       const token = generateToken({id:user._id, role: 'user'});
       res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 10 * 24 * 60 * 60 * 1000 });
-      return res.status(201).send({
-        url: '/dashboard',
+      return res.status(200).json({
+        token,
+        role: 'user',
       });
     }
     if (seller) {
@@ -69,8 +61,9 @@ const userSigninPost = async (req, res) => {
       }
       const token = generateToken({id:seller._id, role: 'seller'});
       res.cookie('token',token, { httpOnly: true, secure: true, sameSite: 'none', maxAge: 10 * 24 * 60 * 60 * 1000 });
-      return res.status(201).send({
-        url: '/dashboard',
+      return res.status(200).json({
+        token,
+        role: 'seller',
       });
     }
 
@@ -86,9 +79,7 @@ const userLogout = (req, res) => {
   res.redirect('/');
 };
 module.exports = {
-  userSignupGet,
-  userSigninGet,
-  userSigninPost,
-  userSignupPost,
+  userSignup,
+  userLogin,
   userLogout,
 };

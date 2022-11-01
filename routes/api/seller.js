@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const sellerController = require('../controllers/seller');
-const auth = require('../middleware/auth');
-const checkMongoId = require('../middleware/mongooseId');
-const { checkIfSeller } = require('../middleware/requiredUser');
-const validateRequest = require('../middleware/validateSchema');
-const { addFoodSchema } = require('../schema/food.schema');
-const { foodOfferSchema } = require('../schema/offer.schema');
-const upload = require('../utils/multer.util');
+const sellerController = require('../../controllers/api/seller');
+const auth = require('../../middleware/auth');
+const checkMongoId = require('../../middleware/mongooseId');
+const { checkIfSeller } = require('../../middleware/requiredUser');
+const validateRequest = require('../../middleware/validateSchema');
+const { addFoodSchema } = require('../../schema/food.schema');
+const { foodOfferSchema } = require('../../schema/offer.schema');
+const upload = require('../../utils/multer.util');
 /**
  * @swagger
  * /seller/api/food/add:

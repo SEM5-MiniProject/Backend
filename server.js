@@ -18,36 +18,35 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const persistance = require('./middleware/checkPersistance');
 app.use(persistance);
-var hbs = require('hbs');
+const hbs = require('hbs');
 const auth = require('./middleware/auth');
 const User = require('./model/user');
 const Seller = require('./model/seller');
+const flash = require('express-flash');
+const session = require('express-session');
 app.set('view engine', 'hbs');
 app.use(express.static(path.resolve(__dirname, './static')))
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
-app.use('/user', require('./routes/auth'));
-app.use('/seller', require('./routes/seller'));
-app.use('/profile', require('./routes/profile'));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+app.use('/user', require('./routes/api/auth'));
+app.use('/seller', require('./routes/api/seller'));
+app.use('/profile', require('./routes/api/profile'));
 app.use('/api-docs', serve, setup);
+app.use('/',require('./routes/auth'));
 app.get('/', (req, res) => {
   res.render('index',{
     persist: req.persist,
   });
 });
-app.get('/signin', (req, res) => {
-  res.render('signin',{
-    persist: req.persist,
-  });
-});
-app.get('/signup', (req, res) => {
-  res.render('signup',{
-    persist: req.persist,
-  });
-});
-app.get('/test',(req,res)=>{
+app.get('/dashboard',(req,res)=>{
   res.render('test')
 })
 app.get('/myprofile',auth,async (req,res)=>{

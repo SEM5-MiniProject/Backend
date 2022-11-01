@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const profileController = require('../controllers/profile');
-const checkMongoId = require('../middleware/mongooseId');
-const {checkIfSeller,checkIfUser} = require('../middleware/requiredUser');
-const auth = require('../middleware/auth');
-const validateSchema = require('../middleware/validateSchema');
-const { sellerProfileUpdateSchema } = require('../schema/profile.schema');
+const profileController = require('../../controllers/api/profile');
+const checkMongoId = require('../../middleware/mongooseId');
+const {checkIfSeller,checkIfUser} = require('../../middleware/requiredUser');
+const auth = require('../../middleware/auth');
+const validateSchema = require('../../middleware/validateSchema');
+const { sellerProfileUpdateSchema } = require('../../schema/profile.schema');
 /**
  * @swagger
  * /profile/seller/{id}:
