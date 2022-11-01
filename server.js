@@ -47,6 +47,16 @@ app.get('/', (req, res) => {
     persist: req.persist,
   });
 });
+app.get('/cart', (req, res) => {
+  res.render('cart',{
+    persist: req.persist,
+  });
+});
+app.get('/checkout', (req, res) => {
+  res.render('checkout',{
+    persist: req.persist,
+  });
+});
 app.get('/myprofile',auth,async (req,res)=>{
   if (req.user && req.user.id){
     const user = await User.findById(req.user.id);
