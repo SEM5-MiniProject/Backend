@@ -112,8 +112,60 @@
               data-target="#example{{ this._id }}">
               Launch demo modal
             </button> --}}
-            <a href="#" class="cart-btn"><i class="fas fa-sell"></i> Add Offer</a>
+            <a type="button" class="cart-btn" data-toggle="modal" data-target="#example2{{ this._id }}"><i
+                class="fas fa-pen"></i> Add Offer</a>
             <!-- Modal -->
+            <div class="modal fade" id="example2{{ this._id }}" tabindex="-1" role="dialog"
+              aria-labelledby="example2{{ this._id }}Label" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="example2{{ this._id }}Label">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="checkout-accordion-wrap">
+                          <div class="accordion" id="accordionExample">
+                            <div class="card single-accordion">
+                              <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Your Product
+                                  </button>
+                                </h5>
+                              </div>
+
+                              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                  <div class="billing-address-form">
+                                    <form action="index.html">
+                                      <p><input type="date" placeholder="11/1/2022"></p>
+                                      
+                                      <p><input type="number" placeholder="Discount"></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                 
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="modal fade" id="example{{ this._id }}" tabindex="-1" role="dialog"
               aria-labelledby="example{{ this._id }}Label" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -149,8 +201,8 @@
                                       <img src="{{ this.image }}" alt="previewImage" height="100px"
                                         id="img{{ this._id }}">
                                       <p><input type="number" placeholder="Price ₹" value="{{ this.price }}"></p>
-                                      <p><textarea name="bill" id="bill" cols="30" rows="10"
-                                          placeholder="Description">{{ this.description }}</textarea></p>
+                                      <p><input name="bill" id="bill" value="{{ this.description }}"
+                                          placeholder="Description"></input></p>
                                   </div>
                                 </div>
                               </div>
