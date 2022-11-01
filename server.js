@@ -25,10 +25,11 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.resolve(__dirname, './static')))
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
-  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+  return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
 });
 hbs.registerHelper('ifNotEquals', function (arg1, arg2, options) {
-  return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
+  console.log(arg1, arg2,options,(arg1 !== arg2));
+  return (arg1 !== arg2) ? options.fn(this) : options.inverse(this);
 });
 hbs.registerHelper('splitDate', function (title) {
   var t = title.toString().split("05");
@@ -57,9 +58,67 @@ app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/seller'));
 app.use('/', require('./routes/static'));
 app.use('/', require('./routes/cart'));
-app.get('/', (req, res) => {
+const Food = require('./model/food');
+app.get('/', async (req, res) => {
+  const foodwithandwithoutoffer = await Food.aggregate([
+    {
+      $match: {
+        isAvailable: true
+      }
+    },
+    {
+      $lookup: {
+        from: 'offers',
+        localField: '_id',
+        foreignField: 'food',
+        as: 'offer'
+      }
+    },
+    {
+      $lookup: {
+        from: 'sellers',
+        localField: 'belongsTo',
+        foreignField: '_id',
+        as: 'sellers'
+      }
+    },
+    {
+      $project: {
+        name: 1,
+        price: 1,
+        image: 1,
+        isVeg: 1,
+        belongsTo: 1,
+        seller: { $arrayElemAt: ['$sellers', 0] },
+        offer: {
+          $filter: {
+            input: '$offer',
+            as: 'offer',
+            cond: {
+              $gte: ['$$offer.validTill', new Date()]
+            }
+          }
+        }
+      }
+    },
+    {
+      $project: {
+        name: 1,
+        price: 1,
+        image: 1,
+        isVeg: 1,
+        seller: 1,
+        belongsTo: 1,
+        offer: {
+          $arrayElemAt: ['$offer', 0]
+        }
+      }
+    }
+  ]);
+  console.log(req.persist);
   res.render('index', {
     persist: req.persist,
+    food: foodwithandwithoutoffer
   });
 });
 
@@ -73,7 +132,7 @@ app.get('/shop', (req, res) => {
 })
 // Catch Error 404
 app.use((req, res) => {
-  res.status(404).render('404', { persist: req.persist });  
+  res.status(404).render('404', { persist: req.persist });
 });
 app.listen(PORT, async () => {
   await connectDB();

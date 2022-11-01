@@ -1,39 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- title -->
-	<title>Meal Diaries</title>
-
-	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
-	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-	<!-- owl carousel -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
-	<!-- magnific popup -->
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
-	<!-- animate css -->
-	<link rel="stylesheet" href="assets/css/animate.css">
-	<!-- mean menu css -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
-	<!-- main style -->
-	<link rel="stylesheet" href="assets/css/main.css">
-	<!-- responsive -->
-	<link rel="stylesheet" href="assets/css/responsive.css">
-
-</head>
+{{> head}}
 
 <body>
   {{> navbar}}
@@ -45,247 +13,234 @@
   {{/if}}
   <!-- hero area -->
   <div class="hero-area hero-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9 offset-lg-2 text-center">
-					<div class="hero-text">
-						<div class="hero-text-tablecell">
-							<h2 class="subtitle head-main">Meal Diaries</h2>
-							<h1>Eat at first sight, love at first bite!</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 offset-lg-2 text-center">
+          <div class="hero-text">
+            <div class="hero-text-tablecell">
+              <h2 class="subtitle head-main">Meal Diaries</h2>
+              <h1>Eat at first sight, love at first bite!</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- end hero area -->
 
   <!-- features list section -->
   <div class="list-section pt-80 pb-80">
     <div class="container">
 
-			<div class="row">
-				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="list-box d-flex align-items-center justify-content-center">
-						<div class="list-icon">
-							<i class="fas fa-shipping-fast"></i>
-						</div>
-						<div class="content">
-							<h3>Free Shipping</h3>
-							<p>When order over ₹300</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-					<div class="list-box d-flex align-items-center justify-content-center">
-						<div class="list-icon">
-							<i class="fas fa-phone-volume"></i>
-						</div>
-						<div class="content">
-							<h3>24/7 Support</h3>
-							<p>Get support all day</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="list-box d-flex justify-content-start align-items-center justify-content-center">
-						<div class="list-icon">
-							<i class="fas fa-sync"></i>
-						</div>
-						<div class="content">
-							<h3>Refund</h3>
-							<p>Get refund within 3 days!</p>
-						</div>
-					</div>
-				</div>
-			</div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <div class="list-box d-flex align-items-center justify-content-center">
+            <div class="list-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div class="content">
+              <h3>Free Shipping</h3>
+              <p>When order over ₹300</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <div class="list-box d-flex align-items-center justify-content-center">
+            <div class="list-icon">
+              <i class="fas fa-phone-volume"></i>
+            </div>
+            <div class="content">
+              <h3>24/7 Support</h3>
+              <p>Get support all day</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="list-box d-flex justify-content-start align-items-center justify-content-center">
+            <div class="list-icon">
+              <i class="fas fa-sync"></i>
+            </div>
+            <div class="content">
+              <h3>Refund</h3>
+              <p>Get refund within 3 days!</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
   <!-- end features list section -->
 
-	<!-- product section -->
+  <!-- product section -->
   {{#ifNotEquals persist "seller"}}
-    
-	<div class="product-section mt-100">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="section-title">
-						<h3><span class="orange-text">Our Popular</span> Products</h3>
-						<p>We aim to cater our customer with the highest quality of home cooked food to fulfill their
-							health needs.
-						</p>
-					</div>
-				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/paneer.png" alt=""></a>
-						</div>
-						<h3>Paneer Masala</h3>
-						<p class="product-price">₹200</p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/biryani.png" alt=""></a>
-						</div>
-						<h3>Veg Biryani</h3>
-						<p class="product-price">₹300</p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/chicken.png" alt=""></a>
-						</div>
-						<h3>Chicken Curry</h3>
-						<p class="product-price">₹350</p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end product section -->
+  <div class="product-section mt-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-title">
+            <h3><span class="orange-text">Our Popular</span> Products</h3>
+            <p>We aim to cater our customer with the highest quality of home cooked food to fulfill their
+              health needs.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        {{#each food }}
+        <div class="col-lg-4 col-md-6 text-center">
+          <div class="single-product-item">
+            <div class="product-image">
+              {{#if this.offer}}
+              <div class="product-badge offer-badge">
+                <p class="badge badge-success">{{ this.offer.discount }} - {{splitDate this.offer.validTill }}</p>
+              </div>
+              {{/if}}
+              <a href="single-product.html"><img src="{{ this.image }}" alt="" height="300px" ></a>
+            </div>
+            <h3>{{ this.name }}</h3>
+            <a href="/myprofile/{{ this.belongsTo }}" target="_blank">{{ this.seller.name }}</a>
+            {{#if this.isVeg }}
+            <h3>
+              <span class="badge badge-success">Veg</span>
+            </h3>
+            {{else}}
+            <h3>
+              <span class="badge badge-danger">Non-Veg</span>
+            </h3>
+            {{/if}}
+            <p class="product-price">
+              {{#if this.offer}}
+                <del>₹{{ this.price }}</del>
+                <br>
+                <span>₹{{ this.offer.newprice }}</span>
+              {{else}}
+                ₹{{ this.price }}
+              {{/if}}
+            </p>
+            <a href="/cart/{{ this._id }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+          </div>
+        </div>
+        {{/each}}
+
+      </div>
+    </div>
+  </div>
+  <!-- end product section -->
   {{/ifNotEquals}}
 
 
-	<!-- testimonail-section -->
-{{> testimonail}}
-	<!-- end testimonail-section -->
-	
-	<!-- advertisement section -->
-	<div class="abt-section mb-100" id="about">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12 mt-4">
-					<div class="abt-bg d-none d-md-flex">
-						<a href="#"><img src="assets/img/heart.png" alt=""></a>
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-12">
-					<div class="abt-text mt-4"  id="about">
-						<p class="top-sub">Founded in 2022</p>
-						<h2>We are <span class="orange-text">Meal Diaries</span></h2>
-						<p class="lead text-dark p-2">Meal Diaries is a food delivery application specially designed for delivering variety of food not only to 
-							regular customers, but also to people who specially require freshly home cooked meals.
-							It offers food from cloud kitchens run by individuals with a variety 
-							of cuisines available. </p>
-						<a href="/about" class="boxed-btn mt-4">Know More</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end advertisement section -->
+  <!-- testimonail-section -->
+  {{> testimonail}}
+  <!-- end testimonail-section -->
+
+  <!-- advertisement section -->
+  <div class="abt-section mb-100" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 mt-4">
+          <div class="abt-bg d-none d-md-flex">
+            <a href="#"><img src="assets/img/heart.png" alt=""></a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="abt-text mt-4" id="about">
+            <p class="top-sub">Founded in 2022</p>
+            <h2>We are <span class="orange-text">Meal Diaries</span></h2>
+            <p class="lead text-dark p-2">Meal Diaries is a food delivery application specially designed for delivering
+              variety of food not only to
+              regular customers, but also to people who specially require freshly home cooked meals.
+              It offers food from cloud kitchens run by individuals with a variety
+              of cuisines available. </p>
+            <a href="/about" class="boxed-btn mt-4">Know More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end advertisement section -->
 
 
-	{{!-- {{> footer}} --}}
-	<!-- footer -->
-	<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p class = "justify-content-start p-1">Meal Diaries is a food delivery application specially designed for delivering variety of food not only 
-							to regular customers, but also to people who specially require freshly home cooked meals.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6" id="contact">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>SIES Graduate School of Technology, Navi Mumbai</li>
-							<li>support@mealdiaries.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">Pages</h2>
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#about">About</a></li>
-							{{!-- <li><a href="services.html">Shop</a></li> --}}
-							{{!-- <li><a href="news.html">News</a></li> --}}
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end footer -->
+  {{!-- {{> footer}} --}}
+  <!-- footer -->
+  <div class="footer-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box about-widget">
+            <h2 class="widget-title">About us</h2>
+            <p class="justify-content-start p-1">Meal Diaries is a food delivery application specially designed for
+              delivering variety of food not only
+              to regular customers, but also to people who specially require freshly home cooked meals.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" id="contact">
+          <div class="footer-box get-in-touch">
+            <h2 class="widget-title">Get in Touch</h2>
+            <ul>
+              <li>SIES Graduate School of Technology, Navi Mumbai</li>
+              <li>support@mealdiaries.com</li>
+              <li>+00 111 222 3333</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box pages">
+            <h2 class="widget-title">Pages</h2>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              {{!-- <li><a href="services.html">Shop</a></li> --}}
+              {{!-- <li><a href="news.html">News</a></li> --}}
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-box subscribe">
+            <h2 class="widget-title">Subscribe</h2>
+            <p>Subscribe to our mailing list to get the latest updates.</p>
+            <form action="index.html">
+              <input type="email" placeholder="Email">
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end footer -->
 
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy;All Rights Reserved.<br>
-					</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							{{!-- <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li> --}}
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end copyright -->
+  <!-- copyright -->
+  <div class="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <p>Copyrights &copy;All Rights Reserved.<br>
+          </p>
+        </div>
+        <div class="col-lg-6 text-right col-md-12">
+          <div class="social-icons">
+            <ul>
+              <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+              {{!-- <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li> --}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end copyright -->
 
   <!-- end latest news -->
 
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+{{> script}}
 
 </body>
 
