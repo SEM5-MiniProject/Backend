@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const Food = require('./food');
 
 const OrderSchema = new mongoose.Schema({
   userId: {
@@ -21,6 +22,9 @@ const OrderSchema = new mongoose.Schema({
         required: [true, 'Please enter quantity'],
         trim: true,
       },
+      price: {
+        type: Number,
+      },
     }],
     required: [true, 'Please enter orderDetails'],
   },
@@ -37,12 +41,6 @@ const OrderSchema = new mongoose.Schema({
   paymentStatus: {
     type: String,
     required: [true, 'Please enter paymentStatus'],
-    trim: true,
-  },
-  sellerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'seller',
-    required: [true, 'Please enter sellerId'],
     trim: true,
   },
   orderStatus: {
@@ -64,6 +62,17 @@ const OrderSchema = new mongoose.Schema({
 //     this.totalAmount = totalAmount;
 //     return next();
 // })
+// Calulate the price and total amount of the order
+OrderSchema.pre('save', async function (next) {
+  let totalAmount = 0;
+  for (let i = 0; i < this.orderDetails.length; i++) {
+    const food = await Food.findById(this.orderDetails[i].foodId);
+    this.orderDetails[i].price = food.price;
+    totalAmount += this.orderDetails[i].quantity * food.price;
+  }
+  this.totalAmount = totalAmount;
+  return next();
+});
 OrderSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Order = mongoose.model('order', OrderSchema);
 Order.createIndexes();

@@ -28,12 +28,16 @@ hbs.registerHelper('ifEquals', function (arg1, arg2, options) {
   return (arg1 === arg2) ? options.fn(this) : options.inverse(this);
 });
 hbs.registerHelper('ifNotEquals', function (arg1, arg2, options) {
-  console.log(arg1, arg2,options,(arg1 !== arg2));
   return (arg1 !== arg2) ? options.fn(this) : options.inverse(this);
 });
 hbs.registerHelper('splitDate', function (title) {
-  var t = title.toString().split("05");
-  return t[0];
+  // convert date to ISO format
+  const date = new Date(title).toISOString();
+  // split date and time
+  const [dateOnly, ] = date.split('T');
+  // return date only
+  console.log(dateOnly);
+  return dateOnly;
 });
 // convert date to javascript date in yyyy-mm-dd format
 hbs.registerHelper('date', function (date) {
@@ -65,6 +69,7 @@ app.use('/', require('./routes/seller'));
 app.use('/', require('./routes/static'));
 app.use('/', require('./routes/cart'));
 app.use('/', require('./routes/food'));
+app.use('/', require('./routes/order'));
 const Food = require('./model/food');
 app.get('/', async (req, res) => {
   const foodwithandwithoutoffer = await Food.aggregate([

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head}}
+
+<body>
+
+  {{> navbar}}
+  <!-- search area -->
+
+  <!-- end search arewa -->
+
+  <!-- breadcrumb-section -->
+  <div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="breadcrumb-text">
+            <p>We sale fresh fruits</p>
+            <h1>My Orders</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end breadcrumb section -->
+
+  <div class="product-section mt-150 mb-150">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="section-title">
+            <h3><span class="orange-text">Our</span> Products</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        {{#each orders }}
+
+        <div class="col-lg-4 col-md-6 text-center">
+          <div class="single-product-item">
+            <div class="product-image">
+              <a href="/food/{{ this.orderDetails.food.0._id }}"><img src="{{ this.orderDetails.food.0.image }}" alt=""
+                  height="200px"></a>
+            </div>
+            <h3>{{ this.orderDetails.food.0.name }}</h3>
+            {{#if this.orderDetails.food.0.isVeg }}
+            <h3>
+              <span class="badge badge-success">Veg</span>
+            </h3>
+            {{else}}
+            <h3>
+              <span class="badge badge-danger">Non-Veg</span>
+            </h3>
+            {{/if}}
+            <p class="product-price">₹{{ this.orderDetails.price }}</p>
+            <p class="product-price">{{ this.orderDetails.quantity }}</p>
+            <p class="product-price">{{splitDate this.createdAt }}</p>
+            <form action="/cart/add/{{this.orderDetails.food.0._id}}" method="post">
+
+            <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i>
+              Add to Cart</button>
+            </form>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <!-- testimonail-section -->
+  {{> testimonail}}
+  <!-- end testimonail-section -->
+
+
+
+  {{> footer}}
+  <!-- jquery -->
+  {{> script}}
+
+</body>
+
+</html>

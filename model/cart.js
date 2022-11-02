@@ -16,7 +16,7 @@ const cartSchema = new Schema({
 });
 // pre save hook to check if the quantity is less than 1
 cartSchema.pre('save', function (next) {
-  if (this.quantity < 1) {
+  if (this.quantity===undefined ||this.quantity < 1) {
     this.quantity = 1;
   }
   next();
