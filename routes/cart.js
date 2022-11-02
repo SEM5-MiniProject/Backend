@@ -5,7 +5,7 @@ const Food = require('../model/food');
 const Cart = require('../model/cart');
 const { default: mongoose } = require('mongoose');
 const router = express.Router();
-
+const checkMongoId = require('../middleware/mongooseId');
 router.get('/cart', auth, checkIfUser, async (req, res) => {
   // showing the cart items and total price and offer price and total offer price and total items
   const myCart = await Cart.aggregate([
@@ -100,13 +100,18 @@ router.get('/cart', auth, checkIfUser, async (req, res) => {
       }
     },
   ]);
-  console.log(myCart,myCart[0].cart);
+  if (myCart.length === 0) {
+    return res.render('cart', {
+      persist: req.persist,
+      cart: false,
+    });
+  }
   res.render('cart', {
     persist: req.persist,
     cart:{...myCart[0],items:myCart[0].cart}
   });
 });
-router.post('/cart/add/:id', auth, checkIfUser, async (req, res) => {
+router.post('/cart/add/:id', auth, checkIfUser, checkMongoId,async (req, res) => {
   const { id } = req.params;
   const food = await Food.findById(id);
   if (!food) {
@@ -135,6 +140,22 @@ router.post('/cart/add/:id', auth, checkIfUser, async (req, res) => {
     await cart.save();
   }
   req.flash('success', 'Successfully added to cart');
+  res.redirect('/cart');
+});
+router.post('/cart/remove/:id', auth, checkIfUser, checkMongoId,async (req, res) => {
+  const { id } = req.params;
+  const food = await Food.findById(id);
+  if (!food) {
+    req.flash('error', 'Cannot find that food!');
+    return res.redirect('/food');
+  }
+  await Cart.findOneAndDelete({
+    $and: [
+      { user: req.user._id },
+      { food: food._id },
+    ]
+  });
+  req.flash('success', 'Successfully removed from cart');
   res.redirect('/cart');
 })
 module.exports = router;

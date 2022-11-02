@@ -42,6 +42,9 @@
   <!-- end breadcrumb section -->
 
   <!-- cart -->
+  {{#if cart}}
+
+
   <div class="cart-section mt-150 mb-150">
     <div class="container">
       <div class="row">
@@ -61,13 +64,19 @@
                 {{#each cart.items }}
 
                 <tr class="table-body-row">
-                  <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                  <td class="product-remove">
+                    <form action="/cart/remove/{{ this.food._id }}" method="post">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="far fa-window-close"></i>
+                      </button>
+                    </form>
+                  </td>
                   <td class="product-image"><img src="{{ this.food.image }}" alt=""></td>
                   <td class="product-name">
                     <a href="/food/{{this.food._id}}">
-                    {{ this.food.name }}
+                      {{ this.food.name }}
                     </a>
-                    </td>
+                  </td>
                   <td class="product-price">
                     {{#if this.offer }}
                     <del>
@@ -134,8 +143,18 @@
       </div>
     </div>
   </div>
+  {{else}}
+  <div class="cart-section mt-150 mb-150">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12">
+          <h1>Cart Is Empty</h1>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- end cart -->
-
+  {{/if}}
   {{> footer}}
   {{> script}}
 
