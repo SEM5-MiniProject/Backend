@@ -46,6 +46,62 @@
         <div class="col-md-5">
           <div class="single-product-img">
             <img src="{{ food.image }}" alt="">
+            <br>
+            {{#if food.canReview}}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">
+              {{#if food.review}}
+                Update Review
+              {{else}}
+                Add Review
+              {{/if}}
+            </button>
+            {{#if food.review}}
+              <form action="/review/delete/{{ food.review._id }}" method="post">
+              <button type="submit">Delete Review</button>
+              </form>
+            {{/if}}
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form action="/review/add/{{ food._id }}" method="post">
+                    <div class="modal-body">
+                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                          <div class="billing-address-form">
+                            <p><input type="number" placeholder="Rating 1-5" id="rating" name="rating" 
+                            {{#if food.review}}
+                              value="{{ food.review.rating }}"
+                            {{/if}}
+                            ></p>
+                            <p><input type="text" placeholder="Review" id="comment" name="comment"
+                            {{#if food.review}}
+                              value="{{ food.review.comment }}"
+                            {{/if}}                              
+                            ></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            {{/if}}
           </div>
         </div>
         <div class="col-md-7">

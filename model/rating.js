@@ -25,6 +25,16 @@ const RatingSchema = new mongoose.Schema({
     trim: true,
   },
 }, { timestamps: true });
+// pre save hook to check if the rating is less than 1 and greater than 5
+RatingSchema.pre('save', function (next) {
+  if (this.rating < 1) {
+    this.rating = 1;
+  }
+  if (this.rating > 5) {
+    this.rating = 5;
+  }
+  next();
+});
 RatingSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Rating = mongoose.model('rating', RatingSchema);
 Rating.createIndexes();

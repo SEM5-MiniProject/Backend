@@ -70,6 +70,7 @@ app.use('/', require('./routes/static'));
 app.use('/', require('./routes/cart'));
 app.use('/', require('./routes/food'));
 app.use('/', require('./routes/order'));
+app.use('/', require('./routes/review'));
 const Food = require('./model/food');
 app.get('/', async (req, res) => {
   const foodwithandwithoutoffer = await Food.aggregate([

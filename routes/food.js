@@ -39,6 +39,14 @@ router.get('/food/:id', auth,checkIfUser,async (req, res) => {
       }
     },
     {
+      $lookup:{
+        from:'orders',
+        localField:'_id',
+        foreignField:'orderDetails.foodId',
+        as:'order'
+      }
+    },
+    {
       $project: {
         name: 1,
         price: 1,
@@ -46,6 +54,7 @@ router.get('/food/:id', auth,checkIfUser,async (req, res) => {
         isVeg: 1,
         belongsTo: 1,
         category: 1,
+        order:{$arrayElemAt:['$order',0]},
         seller: { $arrayElemAt: ['$sellers', 0] },
         offer: {
           $filter: {
@@ -76,11 +85,68 @@ router.get('/food/:id', auth,checkIfUser,async (req, res) => {
         seller: 1,
         belongsTo: 1,
         category: 1,
+        canReview:{
+          $cond:{
+            if:{
+                $eq:['$order.orderStatus','delivered'],
+            },
+            then:true,
+            else:false
+          }
+        },
         offer: {
           $arrayElemAt: ['$offer', 0]
         },
         cart:{
           $arrayElemAt:['$cart',0]
+        }
+      }
+    },
+    {
+      $lookup:{
+        from:'ratings',
+        localField:'_id',
+        foreignField:'foodId',
+        as:'review'
+      }
+    },
+    {
+      $project:{
+        name:1,
+        price:1,
+        image:1,
+        isVeg:1,
+        seller:1,
+        belongsTo:1,
+        category:1,
+        canReview:1,
+        offer:1,
+        cart:1,
+        review:{
+          $filter:{
+            input:'$review',
+            as:'review',
+            cond:{
+              $eq:['$$review.belongsTo',mongoose.Types.ObjectId(req.user._id)]
+            }
+          } 
+        }
+      }
+    },
+    {
+      $project:{
+        name:1,
+        price:1,
+        image:1,
+        isVeg:1,
+        seller:1,
+        belongsTo:1,
+        category:1,
+        canReview:1,
+        offer:1,
+        cart:1,
+        review:{
+          $arrayElemAt:['$review',0]
         }
       }
     }
