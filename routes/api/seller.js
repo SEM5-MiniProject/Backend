@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const sellerController = require('../../controllers/api/seller');
-const auth = require('../../middleware/auth');
+const auth = require('../../middleware/api/auth');
 const checkMongoId = require('../../middleware/mongooseId');
-const { checkIfSeller } = require('../../middleware/requiredUser');
+const { checkIfSeller } = require('../../middleware/api/requiredUser');
 const validateRequest = require('../../middleware/validateSchema');
 const { addFoodSchema } = require('../../schema/food.schema');
 const { foodOfferSchema } = require('../../schema/offer.schema');

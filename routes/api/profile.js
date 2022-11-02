@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const profileController = require('../../controllers/api/profile');
 const checkMongoId = require('../../middleware/mongooseId');
-const {checkIfSeller,checkIfUser} = require('../../middleware/requiredUser');
-const auth = require('../../middleware/auth');
+const {checkIfSeller,checkIfUser} = require('../../middleware/api/requiredUser');
+const auth = require('../../middleware/api/auth');
 const validateSchema = require('../../middleware/validateSchema');
 const { sellerProfileUpdateSchema } = require('../../schema/profile.schema');
 /**
