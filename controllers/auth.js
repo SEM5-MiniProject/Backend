@@ -3,7 +3,6 @@ const Seller = require('../model/seller');
 const { comparePassword } = require('../utils/bcrypt.util');
 const { generateToken } = require('../utils/jwt.util');
 const log = require('../log');
-
 const userSignupGet = (req,res)=>{
   res.render('signup',{
     persist: req.persist,
