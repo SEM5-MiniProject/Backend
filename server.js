@@ -44,6 +44,12 @@ hbs.registerHelper('date', function (date) {
   var day = d.getDate().toString().length == 1 ? '0' + d.getDate() : d.getDate();
   return year + "-" + month + "-" + day;
 });
+// subtract two numbers
+hbs.registerHelper('subtract', function (a, b) {
+  a = parseInt(a);
+  b = parseInt(b);
+  return a - b;
+});
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -58,6 +64,7 @@ app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/seller'));
 app.use('/', require('./routes/static'));
 app.use('/', require('./routes/cart'));
+app.use('/', require('./routes/food'));
 const Food = require('./model/food');
 app.get('/', async (req, res) => {
   const foodwithandwithoutoffer = await Food.aggregate([

@@ -99,7 +99,7 @@
                 <p class="badge badge-success">{{ this.offer.discount }} - {{splitDate this.offer.validTill }}</p>
               </div>
               {{/if}}
-              <a href="single-product.html"><img src="{{ this.image }}" alt="" height="300px" ></a>
+              <a href="/food/{{ this._id }}"><img src="{{ this.image }}" alt="" height="300px" ></a>
             </div>
             <h3>{{ this.name }}</h3>
             <a href="/myprofile/{{ this.belongsTo }}" target="_blank">{{ this.seller.name }}</a>
@@ -121,7 +121,11 @@
                 ₹{{ this.price }}
               {{/if}}
             </p>
-            <a href="/cart/{{ this._id }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            <form action="/cart/add/{{ this._id }}" method="post">
+            <button type="submit" class="cart-btn">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+            </form>
           </div>
         </div>
         {{/each}}

@@ -4,6 +4,7 @@ const Order = require('./order');
 const Rating = require('./rating');
 const Seller = require('./seller');
 const Offer = require('./offer');
+const Cart = require('./cart');
 module.exports = {
   model: [
     User,
@@ -12,5 +13,6 @@ module.exports = {
     Rating,
     Seller,
     Offer,
+    Cart,
   ],
 };
