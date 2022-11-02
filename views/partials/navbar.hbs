@@ -20,6 +20,7 @@
           </div>
           <!-- logo -->
 
+{{!-- search dropdown --}}
           <!-- menu start -->
           <nav class="main-menu">
             {{#ifEquals persist false}}
@@ -79,8 +80,27 @@
         <span class="close-btn"><i class="fas fa-window-close"></i></span>
         <div class="search-bar">
           <div class="search-bar-tablecell">
+            <div class="dropdown">
+  <button style="background-color: #F28123; border:none;  border-radius: 16px; width: 200px ; height: 45px"><b>Select your choice<b></button>
+  <div class="dropdown-content">
+
+
+    <a  href="/shop">Types of Meals</a>
+
+
+    <a  href="#">Veg</a>
+
+
+    <a  href="#">Non Veg</a>
+
+
+</div>
+</div> 
+ 
+ 
+
             <h3>Search For:</h3>
-            <input type="text" placeholder="Keywords">
+            <input style = "font-size: 30px" type="text" placeholder="*Use @ to view Seller's Profile">
             <button type="submit">Search <i class="fas fa-search"></i></button>
           </div>
         </div>
@@ -88,4 +108,75 @@
     </div>
   </div>
 </div>
+
+
+<style>
+  .dropdown {
+
+
+  {{!-- display: flex; --}}
+
+
+  position: absolute;
+
+  top: 20
+
+  height: 60px
+  
+
+
+}
+
+.dropdown-content {
+
+
+    display: none;
+
+
+    position: absolute;
+
+
+    width: 100%;
+
+
+    overflow: auto;
+
+
+     
+
+}
+.dropdown:hover .dropdown-content {
+
+
+    display: block;
+
+
+}
+.dropdown-content a {
+
+
+    display: block;
+
+
+    color: #ffffff;
+
+
+    padding: 5px;
+
+
+    text-decoration: none;
+
+
+}
+.dropdown-content a:hover {
+
+
+    color: #F28123;
+
+
+    background-color: #fbfbfb;
+
+
+}
+</style>
 <!-- end search area -->
