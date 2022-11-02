@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const Food = require('./food');
-
+const Offer = require('./offer');
 const OrderSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -68,6 +68,10 @@ OrderSchema.pre('save', async function (next) {
   for (let i = 0; i < this.orderDetails.length; i++) {
     const food = await Food.findById(this.orderDetails[i].foodId);
     this.orderDetails[i].price = food.price;
+    const offer = await Offer.findOne({ food: this.orderDetails[i].foodId });
+    if (offer && offer.validTill > Date.now()) {
+      this.orderDetails[i].price = offer.newprice;
+    }
     totalAmount += this.orderDetails[i].quantity * food.price;
   }
   this.totalAmount = totalAmount;
