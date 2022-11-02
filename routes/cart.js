@@ -70,7 +70,9 @@ router.get('/cart', auth, checkIfUser, async (req, res) => {
               },
               then: {
                 $multiply: [
-                  '$offer.newprice',
+                  {
+                    $subtract: ['$food.price', '$offer.newprice']
+                  },
                   '$quantity'
                 ]
               },
