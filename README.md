@@ -1,4 +1,6 @@
 # Backend
+[![Node.js CI](https://github.com/SEM5-MiniProject/Backend/actions/workflows/node.js.yml/badge.svg)](https://github.com/SEM5-MiniProject/Backend/actions/workflows/node.js.yml)
+[![Heroku Deploy](https://github.com/SEM5-MiniProject/Backend/actions/workflows/heroku.yml/badge.svg?branch=main&event=workflow_run)](https://github.com/SEM5-MiniProject/Backend/actions/workflows/heroku.yml)
 
 <b>Link</b>
 
