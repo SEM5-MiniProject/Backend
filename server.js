@@ -71,78 +71,7 @@ app.use('/', require('./routes/cart'));
 app.use('/', require('./routes/food'));
 app.use('/', require('./routes/order'));
 app.use('/', require('./routes/review'));
-const Food = require('./model/food');
-app.get('/', async (req, res) => {
-  const foodwithandwithoutoffer = await Food.aggregate([
-    {
-      $match: {
-        isAvailable: true
-      }
-    },
-    {
-      $lookup: {
-        from: 'offers',
-        localField: '_id',
-        foreignField: 'food',
-        as: 'offer'
-      }
-    },
-    {
-      $lookup: {
-        from: 'sellers',
-        localField: 'belongsTo',
-        foreignField: '_id',
-        as: 'sellers'
-      }
-    },
-    {
-      $project: {
-        name: 1,
-        price: 1,
-        image: 1,
-        isVeg: 1,
-        belongsTo: 1,
-        seller: { $arrayElemAt: ['$sellers', 0] },
-        offer: {
-          $filter: {
-            input: '$offer',
-            as: 'offer',
-            cond: {
-              $gte: ['$$offer.validTill', new Date()]
-            }
-          }
-        }
-      }
-    },
-    {
-      $project: {
-        name: 1,
-        price: 1,
-        image: 1,
-        isVeg: 1,
-        seller: 1,
-        belongsTo: 1,
-        offer: {
-          $arrayElemAt: ['$offer', 0]
-        }
-      }
-    }
-  ]);
-  console.log(req.persist);
-  res.render('index', {
-    persist: req.persist,
-    food: foodwithandwithoutoffer
-  });
-});
 
-app.get('/checkout', (req, res) => {
-  res.render('checkout', {
-    persist: req.persist,
-  });
-});
-app.get('/shop', (req, res) => {
-  res.render('shop', { persist: req.persist })
-})
 // Catch Error 404
 app.use((req, res) => {
   res.status(404).render('404', { persist: req.persist });
