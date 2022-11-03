@@ -26,3 +26,22 @@
 ```
     yarn run dev
 ```
+
+
+<h4>Commands To Spin Docker Container</h4>
+
+```
+  docker compose up
+```
+
+<h4>For Development</h4>
+
+```
+  docker compose -f .\docker-compose-dev.yml up
+```
+
+<h4>Remove cache and build</h4>
+
+```
+  docker compose up --build --remove-orphans --force-recreate
+```
