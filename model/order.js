@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const Food = require('./food');
-const Offer = require('./offer');
 const OrderSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -39,9 +37,26 @@ const OrderSchema = new mongoose.Schema({
     required: [true, 'Please enter paymentType'],
     trim: true,
   },
+  orderId:{
+    type: String,
+    required: [true, 'Please enter orderId'],
+    trim: true,
+  },
+  receiptId:{
+    type: String,
+    required: [true, 'Please enter receiptId'],
+    trim: true,
+  },
+  paymentId:{
+    type: String,
+    trim: true,
+  },
+  signature:{
+    type: String,
+    trim: true,
+  },
   paymentStatus: {
     type: String,
-    required: [true, 'Please enter paymentStatus'],
     trim: true,
   },
   orderStatus: {
@@ -64,20 +79,20 @@ const OrderSchema = new mongoose.Schema({
 //     return next();
 // })
 // Calulate the price and total amount of the order
-OrderSchema.pre('save', async function (next) {
-  let totalAmount = 0;
-  for (let i = 0; i < this.orderDetails.length; i++) {
-    const food = await Food.findById(this.orderDetails[i].foodId);
-    this.orderDetails[i].price = food.price;
-    const offer = await Offer.findOne({ food: this.orderDetails[i].foodId });
-    if (offer && offer.validTill > Date.now()) {
-      this.orderDetails[i].price = offer.newprice;
-    }
-    totalAmount += this.orderDetails[i].quantity * food.price;
-  }
-  this.totalAmount = totalAmount;
-  return next();
-});
+// OrderSchema.pre('save', async function (next) {
+//   let totalAmount = 0;
+//   for (let i = 0; i < this.orderDetails.length; i++) {
+//     const food = await Food.findById(this.orderDetails[i].foodId);
+//     this.orderDetails[i].price = food.price;
+//     const offer = await Offer.findOne({ food: this.orderDetails[i].foodId });
+//     if (offer && offer.validTill > Date.now()) {
+//       this.orderDetails[i].price = offer.newprice;
+//     }
+//     totalAmount += this.orderDetails[i].quantity * food.price;
+//   }
+//   this.totalAmount = totalAmount;
+//   return next();
+// });
 OrderSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 const Order = mongoose.model('order', OrderSchema);
 Order.createIndexes();

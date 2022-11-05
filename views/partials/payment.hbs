@@ -5,16 +5,20 @@
   <input id="razorpay_signature" name="razorpay_signature" type="hidden" />
 </form>
 <script>
-  async function Payment(e, id,name,image) {
+  async function Payment(e, id,name,image,quantity) {
     e.preventDefault();
+    console.log(id,name,image,quantity);
 
     let response = await fetch(`/payment/${id}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
+      body:JSON.stringify({
+        quantity:quantity ? quantity : 1
+      })
     })
-
+    
     var orderData = await response.json();
     orderData = orderData.order;
     console.log(orderData);
@@ -27,13 +31,10 @@
       "image": image,
       "order_id": orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       "handler": function (response) {
-        console.log(response);
         document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
         document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
         document.getElementById('razorpay_signature').value = response.razorpay_signature;
         document.getElementById("paymentVerifyForm").submit();
-        console.log(document.getElementById('razorpay_payment_id').value, document.getElementById('razorpay_order_id').value, document.getElementById('razorpay_signature').value);
-        alert(JSON.stringify(response));
       },
       "modal": {
         "ondismiss": function () {
