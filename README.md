@@ -19,7 +19,7 @@
 
 <b>Docker Hub</b>
 
-<p>https://hub.docker.com/repository/docker/salmanad01/sem5-miniproject</p>
+<p>https://hub.docker.com/r/salmanad01/mealdiaries</p>
 <h4> Get Started</h4>
 </br>
 
