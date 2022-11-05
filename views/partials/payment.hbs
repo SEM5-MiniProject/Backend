@@ -1,0 +1,49 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<form id="paymentVerifyForm" action="/payment/verify" method="POST">
+  <input id="razorpay_payment_id" name="razorpay_payment_id" type="hidden" />
+  <input id="razorpay_order_id" name="razorpay_order_id" type="hidden" />
+  <input id="razorpay_signature" name="razorpay_signature" type="hidden" />
+</form>
+<script>
+  async function Payment(e, id,name,image) {
+    e.preventDefault();
+
+    let response = await fetch(`/payment/${id}`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+    })
+
+    var orderData = await response.json();
+    orderData = orderData.order;
+    console.log(orderData);
+
+    var options = {
+      "key": "rzp_test_p4B7WH2gc3wU12", // Enter the Key ID generated from the Dashboard
+      "amount": orderData.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": name,
+      "image": image,
+      "order_id": orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        console.log(response);
+        document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+        document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+        document.getElementById('razorpay_signature').value = response.razorpay_signature;
+        document.getElementById("paymentVerifyForm").submit();
+        console.log(document.getElementById('razorpay_payment_id').value, document.getElementById('razorpay_order_id').value, document.getElementById('razorpay_signature').value);
+        alert(JSON.stringify(response));
+      },
+      "modal": {
+        "ondismiss": function () {
+          alert('Please complete the payment to continue');
+        }
+      },
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  };
+
+
+</script>

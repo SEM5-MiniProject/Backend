@@ -201,65 +201,10 @@
 	<!-- end check out section -->
 
 	{{> footer}}
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script>
-
-	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-
+{{> script}}
+{{> payment}}
 
 </body>
-<script>
-	window.addEventListener('load', function () {
-		document.getElementById('rzp-button1').onclick = async function (e) {
-			e.preventDefault();
 
-			let response = await fetch('/payment', {
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					amount: 500,
-				})
-			})
-
-			var orderData = await response.json();
-			console.log(orderData);
-
-			var options = {
-				"key": "rzp_test_p4B7WH2gc3wU12", // Enter the Key ID generated from the Dashboard
-				"amount": "500", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-				"currency": "INR",
-				"order_id": orderData.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-				"handler": function (response) {
-					alert("payment successful")
-				},
-			};
-			var rzp1 = new Razorpay(options);
-			rzp1.open();
-		};
-
-	})
-
-</script>
 
 </html>

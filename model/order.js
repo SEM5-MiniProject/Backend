@@ -19,6 +19,7 @@ const OrderSchema = new mongoose.Schema({
       },
       quantity: {
         type: Number,
+        default: 1,
         required: [true, 'Please enter quantity'],
         trim: true,
       },
