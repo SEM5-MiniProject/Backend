@@ -22,10 +22,10 @@ jobs:
     
     - name: Tag the image
       run: |
-      docker tag mealdiaries ${{ secrets.DOCKER_USERNAME }}/mealdiaries:latest 
-      docker tag mealdiaries ${{ secrets.DOCKER_USERNAME }}/mealdiaries:${{ github.run_number }}
+        docker tag mealdiaries ${{ secrets.DOCKER_USERNAME }}/mealdiaries:latest 
+        docker tag mealdiaries ${{ secrets.DOCKER_USERNAME }}/mealdiaries:${{ github.run_number }}
     
     - name: Push the image
       run: |
-      docker push ${{ secrets.DOCKER_USERNAME }}/mealdiaries:latest
-      docker push ${{ secrets.DOCKER_USERNAME }}/mealdiaries:${{ github.run_number }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/mealdiaries:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/mealdiaries:${{ github.run_number }}
