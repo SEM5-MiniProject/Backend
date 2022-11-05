@@ -224,7 +224,11 @@
 
 	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-	<script>
+
+
+</body>
+<script>
+	window.addEventListener('load', function () {
 		document.getElementById('rzp-button1').onclick = async function (e) {
 			e.preventDefault();
 
@@ -254,8 +258,8 @@
 			rzp1.open();
 		};
 
-	</script>
+	})
 
-</body>
+</script>
 
 </html>

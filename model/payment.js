@@ -1,6 +1,13 @@
 const mongoose = require('mongoose')
 
 const paymentDetailsSchema = new mongoose.Schema({
+    orderId: {
+        type: String,
+        required: true
+    },    
+    amount: {
+        type: Number
+    },
     receiptId: {
         type: String
     },
