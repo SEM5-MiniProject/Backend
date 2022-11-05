@@ -18,7 +18,7 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build using compose file
-      run: docker compose build -t mealdiaries
+      run: docker compose build
     
     - name: Tag the image
       run: |

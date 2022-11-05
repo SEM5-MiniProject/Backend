@@ -9,6 +9,7 @@ services:
     volumes:
       - mongo-data:/data/db
   backend:
+    image: mealdiaries
     build:
       context: .
       dockerfile: ./Dockerfile
