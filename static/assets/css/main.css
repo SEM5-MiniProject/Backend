@@ -27,6 +27,11 @@ html {
   color: #F28123;
 }
 
+.btn-primary{
+  background-color: #F28123;
+  border: none;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
