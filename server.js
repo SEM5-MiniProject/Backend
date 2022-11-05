@@ -71,6 +71,7 @@ app.use('/', require('./routes/cart'));
 app.use('/', require('./routes/food'));
 app.use('/', require('./routes/order'));
 app.use('/', require('./routes/review'));
+app.use('/payment', require('./routes/razorpay'));
 
 // Catch Error 404
 app.use((req, res) => {

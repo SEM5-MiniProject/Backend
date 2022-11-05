@@ -60,7 +60,7 @@ const getDashbord = async (req, res) => {
       }
     }
   ]);
-  console.log(foodwithandwithoutoffer);
+  // console.log(foodwithandwithoutoffer);
   res.render('index', {
     persist: req.persist,
     food: foodwithandwithoutoffer,

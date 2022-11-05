@@ -137,8 +137,9 @@
             <p>{{ food.description }}</p>
             <div class="single-product-form">
               <form action="/cart/add/{{ food._id }}" method="post">
-                <input type="number" name="quantity" value="{{ food.cart.quantity }}">
+                <input type="number" name="quantity" value="{{ food.cart.quantity }}" id="quantity">
                 <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                <button type="button" class="cart-btn" onclick="Payment(event,'{{ food._id }}','{{ food.name }}', '{{ food.image }}',quantity.value)"><i class="fas fa-shopping-cart"></i>Buy</button>
               </form>
               <p><strong>Categories: </strong>{{ food.category }}</p>
             </div>
@@ -205,7 +206,7 @@
   {{> footer}}
   <!-- end copyright -->
   {{> script}}
-
+  {{> payment}}
 </body>
 
 </html>

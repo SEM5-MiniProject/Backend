@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,9 +33,10 @@
 	<link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
+
 <body>
-	
-{{> navbar}}
+
+	{{> navbar}}
 
 	<!-- search area -->
 	<div class="search-area">
@@ -54,7 +56,7 @@
 		</div>
 	</div>
 	<!-- end search arewa -->
-	
+
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -77,61 +79,70 @@
 				<div class="col-lg-8">
 					<div class="checkout-accordion-wrap">
 						<div class="accordion" id="accordionExample">
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingOne">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          Billing Address
-						        </button>
-						      </h5>
-						    </div>
+							<div class="card single-accordion">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-link" type="button" data-toggle="collapse"
+											data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Billing Address
+										</button>
+									</h5>
+								</div>
 
-						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="billing-address-form">
-						        	<form action="index.html">
-						        		<p><input type="text" placeholder="Name"></p>
-						        		<p><input type="email" placeholder="Email"></p>
-						        		<p><input type="text" placeholder="Address"></p>
-						        		<p><input type="tel" placeholder="Phone"></p>
-						        		<p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Say Something"></textarea></p>
-						        	</form>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingTwo">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Shipping Address
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="shipping-address-form">
-						        	<p>Your shipping address form is here.</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="card single-accordion">
-						    <div class="card-header" id="headingThree">
-						      <h5 class="mb-0">
-						        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          Card Details
-						        </button>
-						      </h5>
-						    </div>
-						    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-						      <div class="card-body">
-						        <div class="card-details">
-						        	<p>Your card details goes here.</p>
-						        </div>
-						      </div>
-						    </div>
-						  </div>
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+									data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="billing-address-form">
+											<form action="index.html">
+												<p><input type="text" placeholder="Name"></p>
+												<p><input type="email" placeholder="Email"></p>
+												<p><input type="text" placeholder="Address"></p>
+												<p><input type="tel" placeholder="Phone"></p>
+												<p><textarea name="bill" id="bill" cols="30" rows="10"
+														placeholder="Say Something"></textarea></p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card single-accordion">
+								<div class="card-header" id="headingTwo">
+									<h5 class="mb-0">
+										<button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+											data-target="#collapseTwo" aria-expanded="false"
+											aria-controls="collapseTwo">
+											Shipping Address
+										</button>
+									</h5>
+								</div>
+								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+									data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="shipping-address-form">
+											<p>Your shipping address form is here.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="card single-accordion">
+								<div class="card-header" id="headingThree">
+									<h5 class="mb-0">
+										<button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+											data-target="#collapseThree" aria-expanded="false"
+											aria-controls="collapseThree">
+											Card Details
+										</button>
+									</h5>
+								</div>
+								<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+									data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="card-details">
+											<p>Your card details goes here.</p>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 
 					</div>
@@ -178,8 +189,10 @@
 									<td>$240</td>
 								</tr>
 							</tbody>
+
 						</table>
-						<a href="#" class="boxed-btn">Place Order</a>
+						<a href="/placeorder" class="boxed-btn">Place Order</a>
+						<button id="rzp-button1" onclick="Payment(event);">pay</button>
 					</div>
 				</div>
 			</div>
@@ -187,27 +200,55 @@
 	</div>
 	<!-- end check out section -->
 
-{{> footer}}
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+	{{> footer}}
+{{> script}}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<form id="paymentVerifyForm" action="/payment/verify" method="POST">
+  <input id="razorpay_payment_id" name="razorpay_payment_id" type="hidden" />
+  <input id="razorpay_order_id" name="razorpay_order_id" type="hidden" />
+  <input id="razorpay_signature" name="razorpay_signature" type="hidden" />
+</form>
+<script>
+  async function Payment(e) {
+    e.preventDefault();
+
+    let response = await fetch(`/payment/cart`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+    })
+
+    var orderData = await response.json();
+    orderData = orderData.order;
+    console.log(orderData);
+
+    var options = {
+      "key": "rzp_test_p4B7WH2gc3wU12", // Enter the Key ID generated from the Dashboard
+      "amount": orderData.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": 'MealDiaries',
+      "order_id": orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+        document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+        document.getElementById('razorpay_signature').value = response.razorpay_signature;
+        document.getElementById("paymentVerifyForm").submit();
+      },
+      "modal": {
+        "ondismiss": function () {
+          alert('Please complete the payment to continue');
+        }
+      },
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  };
+
+
+</script>
 
 </body>
+
+
 </html>
