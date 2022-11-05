@@ -51,3 +51,9 @@
 ```
   docker compose up --build --remove-orphans --force-recreate
 ```
+
+<h4>Run From Docker Hub</h4>
+
+```
+docker run --env-file .env -p 5000:5000 salmanad01/mealdiaries:latest
+```
