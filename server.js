@@ -72,6 +72,7 @@ app.use('/', require('./routes/food'));
 app.use('/', require('./routes/order'));
 app.use('/', require('./routes/review'));
 app.use('/', require('./routes/shop'));
+app.use('/', require('./routes/myprofile'));
 app.use('/payment', require('./routes/razorpay'));
 
 // Catch Error 404
