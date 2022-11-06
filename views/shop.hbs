@@ -1,133 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 {{> head }}
+
 <body>
-	{{> navbar}}
+  {{> navbar}}
 
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p>Choose from the best cuisines available around you!</p>
-						<h1>Shop</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end breadcrumb section -->
 
-	<!-- products -->
-	<div class="product-section mt-150 mb-150">
-		<div class="container">
+  <!-- breadcrumb-section -->
+  <div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2 text-center">
+          <div class="breadcrumb-text">
+            <p>Choose from the best cuisines available around you!</p>
+            <h1>Shop</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end breadcrumb section -->
 
-			<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-							<li data-filter=".Launch">Breakfast</li>
-                            <li data-filter=".Launch">Lunch</li>
-                            <li data-filter=".Dinner">Dinner</li>
-                            <li data-filter=".snacks">Snacks</li>
-                        </ul>
-                    </div>
-                </div>
+  <!-- products -->
+  <div class="product-section mt-150 mb-150">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="product-filters">
+            <ul>
+              <li class="active" data-filter="*">All</li>
+              <li data-filter=".breakfast">Breakfast</li>
+              <li data-filter=".launch">Lunch</li>
+              <li data-filter=".dinner">Dinner</li>
+              <li data-filter=".snacks">Snacks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row product-lists mt-2">
+        {{#each food }}
+        {{#each this.foods}}
+        <div class="col-lg-3 col-md-6 text-center {{ ../category }}">
+          <div class="single-product-item">
+            <div class="product-image">
+              <a href="/food/{{ this._id }}"><img src="{{ this.image }}" alt="" height="300px"></a>
             </div>
+            <h3>{{ this.name }}</h3>
+            <h3>{{ ../category }}</h3>
+            <p class="product-price">
+              {{#if this.offer}}
+              <del>₹{{ this.price }}</del>
+              <br>
+              <span>₹{{ this.offer.newprice }}</span>
+              {{else}}
+              ₹{{ this.price }}
+              {{/if}}
 
-			<div class="row product-lists mt-2">
-				<div class="col-lg-4 col-md-6 text-center Launch">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<h3>Lunch</h3>
-						<p class="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center Dinner">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-						</div>
-						<h3>Grape</h3>
-						<h3>Dinner</h3>
-						<p class="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center snacks">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<h3>Snacks</h3>
-						<p class="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-						</div>
-						<h3>Lemon</h3>
-						<h3>Snacks</h3>
-						<p class="product-price"><span>Per Kg</span> 50$ </p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-						</div>
-						<h3>Green Apple</h3>
-						<h3>Snacks</h3>
-						<p class="product-price"><span>Per Kg</span> 45$ </p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 text-center Launch">
-					<div class="single-product-item">
-						<div class="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-						</div>
-						<h3>Strawberry</h3>
-						<h3>Lunch</h3>
-						<p class="product-price"><span>Per Kg</span> 80$ </p>
-						<a href="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-			</div>
+            </p>
+            <form action="/cart/add/{{ this._id }}" method="post">
+              <button type="submit" class="cart-btn">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+          </div>
+        </div>
+        {{/each}}
 
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<div class="pagination-wrap">
-						<ul>
-							<li><a href="#">Prev</a></li>
-							<li><a href="#">1</a></li>
-							<li><a class="active" href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">Next</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end products -->
+        {{/each}}
+      </div>
 
-{{> footer}}
-	<!-- end copyright -->
-	
-	{{> script}}
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="pagination-wrap">
+            <ul>
+              <li><a href="#">Prev</a></li>
+              <li><a href="#">1</a></li>
+              <li><a class="active" href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end products -->
+
+  {{> footer}}
+  <!-- end copyright -->
+
+  {{> script}}
 
 </body>
+
 </html>

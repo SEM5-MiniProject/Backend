@@ -106,7 +106,4 @@ router.get('/checkout', (req, res) => {
     persist: req.persist,
   });
 });
-router.get('/shop', (req, res) => {
-  res.render('shop', { persist: req.persist })
-})
 module.exports = router;
