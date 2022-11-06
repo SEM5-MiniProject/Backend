@@ -25,11 +25,11 @@ jobs:
     - name: Run tests
       run: yarn run test
       env:
-        MONGO_URI= {{ secrets.MONGO_URI }}
-        JWT_SECRET= {{ secrets.JWT_SECRET }}
-        JWT_EXPIRES_IN= {{ secrets.JWT_EXPIRES_IN }}
-        FIREBASE_PRIVATE_KEY= {{ secrets.FIREBASE_PRIVATE_KEY }}
-        SESSION_SECRET= {{ secrets.SESSION_SECRET }}
-        KEY_ID= {{ secrets.KEY_ID }}
-        KEY_SECRET= {{ secrets.KEY_SECRET }}
+        MONGO_URI= ${{ secrets.MONGO_URI }}
+        JWT_SECRET= ${{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN= ${{ secrets.JWT_EXPIRES_IN }}
+        FIREBASE_PRIVATE_KEY= ${{ secrets.FIREBASE_PRIVATE_KEY }}
+        SESSION_SECRET= ${{ secrets.SESSION_SECRET }}
+        KEY_ID= ${{ secrets.KEY_ID }}
+        KEY_SECRET= ${{ secrets.KEY_SECRET }}
         
