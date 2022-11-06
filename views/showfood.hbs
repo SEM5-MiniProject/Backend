@@ -35,15 +35,15 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">
               {{#if food.review}}
-                Update Review
+              Update Review
               {{else}}
-                Add Review
+              Add Review
               {{/if}}
             </button>
             {{#if food.review}}
-              <form action="/review/delete/{{ food.review._id }}" method="post">
+            <form action="/review/delete/{{ food.review._id }}" method="post">
               <button type="submit">Delete Review</button>
-              </form>
+            </form>
             {{/if}}
 
             <!-- Modal -->
@@ -63,16 +63,10 @@
                         data-parent="#accordionExample">
                         <div class="card-body">
                           <div class="billing-address-form">
-                            <p><input type="number" placeholder="Rating 1-5" id="rating" name="rating" 
-                            {{#if food.review}}
-                              value="{{ food.review.rating }}"
-                            {{/if}}
-                            ></p>
-                            <p><input type="text" placeholder="Review" id="comment" name="comment"
-                            {{#if food.review}}
-                              value="{{ food.review.comment }}"
-                            {{/if}}                              
-                            ></p>
+                            <p><input type="number" placeholder="Rating 1-5" id="rating" name="rating" {{#if
+                                food.review}} value="{{ food.review.rating }}" {{/if}}></p>
+                            <p><input type="text" placeholder="Review" id="comment" name="comment" {{#if food.review}}
+                                value="{{ food.review.comment }}" {{/if}}></p>
                           </div>
                         </div>
                       </div>
@@ -123,7 +117,9 @@
               <form action="/cart/add/{{ food._id }}" method="post">
                 <input type="number" name="quantity" value="{{ food.cart.quantity }}" id="quantity">
                 <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                <button type="button" class="cart-btn" onclick="Payment(event,'{{ food._id }}','{{ food.name }}', '{{ food.image }}',quantity.value)"><i class="fas fa-shopping-cart"></i>Buy</button>
+                <button type="button" class="cart-btn"
+                  onclick="Payment(event,'{{ food._id }}','{{ food.name }}', '{{ food.image }}',quantity.value)"><i
+                    class="fas fa-shopping-cart"></i>Buy</button>
               </form>
               <p><strong>Categories: </strong>{{ food.category }}</p>
             </div>

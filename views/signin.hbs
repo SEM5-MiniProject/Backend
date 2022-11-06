@@ -41,7 +41,7 @@
       </div>
     </div>
   </div>
-{{> script}}
+  {{> script}}
   <script>
     function getFormData($form) {
       var unindexed_array = $form.serializeArray();
@@ -71,7 +71,7 @@
         },
         error: function (error) {
           console.log(error);
-          alert(error.responseJSON.error ? error.responseJSON.error:error.message);
+          alert(error.responseJSON.error ? error.responseJSON.error : error.message);
         },
       });
     })

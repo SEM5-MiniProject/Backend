@@ -4,7 +4,7 @@
 {{> head }}
 
 <body>
-{{> navbar}}
+  {{> navbar}}
   <!-- end header -->
 
 
@@ -101,7 +101,7 @@
     </div>
   </div>
 
-{{> script }}
+  {{> script }}
   <script>
     function getFormData($form) {
       var unindexed_array = $form.serializeArray();
@@ -117,8 +117,8 @@
     const url = "signup";
     const form = document.querySelector("form");
     form.addEventListener('submit', (e) => {
-    var $form = $("form");
-    var data = getFormData($form);
+      var $form = $("form");
+      var data = getFormData($form);
       e.preventDefault();
       console.log(data);
       $.ajax({
@@ -130,7 +130,7 @@
           window.location.replace(response.url)
         },
         error: function (error) {
-          alert(error.responseJSON.error ? error.responseJSON.error:error.message);
+          alert(error.responseJSON.error ? error.responseJSON.error : error.message);
         },
       });
     })

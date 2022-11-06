@@ -26,7 +26,7 @@
   <!-- check out section -->
   <div class="checkout-section mt-150 mb-150">
     <div class="container">
-  {{#if message.success}}
+      {{#if message.success}}
 
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{ message.success }}</strong>
@@ -61,8 +61,7 @@
                           <img id="blah" src="#" class="marksheet-img mb-4" alt="" height="100px">
                         </div>
                         <p><input type="number" placeholder="Price ₹" id="price" name="price"></p>
-                        <p><input name="description" id="description"
-                            placeholder="Description"></input></p>
+                        <p><input name="description" id="description" placeholder="Description"></input></p>
                     </div>
                   </div>
                 </div>
@@ -117,7 +116,7 @@
   </div>
   {{> footer}}
 
-{{> script }}
+  {{> script }}
   <script>
     function readURL(input) {
       $("#img-div").show();

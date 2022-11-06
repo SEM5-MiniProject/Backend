@@ -112,7 +112,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="applyFilter(Filterprice,FilterIsVeg,FilterNonVeg,Filtercategory)">Save changes</button>
+          <button type="button" class="btn btn-primary"
+            onclick="applyFilter(Filterprice,FilterIsVeg,FilterNonVeg,Filtercategory)">Save changes</button>
         </div>
       </div>
     </div>
@@ -192,13 +193,13 @@
   {{> script}}
   {{> payment}}
   <script>
-    function applyFilter(price,veg,nonveg,category){
+    function applyFilter(price, veg, nonveg, category) {
       var price = price.value;
       var veg = veg.checked;
       var nonveg = nonveg.checked;
       var category = category.value;
-      console.log(price,veg,nonveg,category);
-      window.location.href = `/shop?price=${price}&veg=${veg}&nonveg=${nonveg}${category!== 'null'? `&category=${category}` : ''}`;
+      console.log(price, veg, nonveg, category);
+      window.location.href = `/shop?price=${price}&veg=${veg}&nonveg=${nonveg}${category !== 'null' ? `&category=${category}` : ''}`;
     }
   </script>
 </body>
