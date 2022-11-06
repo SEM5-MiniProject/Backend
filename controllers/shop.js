@@ -89,7 +89,6 @@ const getShop = async (req, res) => {
     }
 
   ]);
-  console.log(foodwithandwithoutoffer[0].foods);
   res.render('shop', { persist: req.persist, food: foodwithandwithoutoffer });
 }
 
