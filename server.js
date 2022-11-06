@@ -41,6 +41,8 @@ hbs.registerHelper('splitDate', function (title) {
 });
 // convert date to javascript date in yyyy-mm-dd format
 hbs.registerHelper('date', function (date) {
+  // convert date to ISO format
+  date = new Date(date).toISOString();
   var t = date.toString().split("05");
   var d = new Date(t[0]);
   var year = d.getFullYear();

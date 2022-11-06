@@ -127,6 +127,33 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="comments-list-wrap">
+							<h3 class="comment-count-title">{{ food.TotalReviews}} Reviews</h3>
+							<div class="comment-list">
+                {{#each food.AllReviews }}
+                  
+								<div class="single-comment-body">
+									<div class="comment-user-avater">
+										<img src="https://randomuser.me/api/portraits/men/11.jpg" alt="">
+									</div>
+									<div class="comment-text-body">
+										<h4>
+                      <a href="/myprofile/{{ this.belongsTo._id}}" target="_blank">
+                      {{ this.belongsTo.name}}
+                      </a>
+                       <span class="comment-date">{{date this.createdAt}}</span>
+                    {{this.rating}} <i class="fas fa-star"></i></h4>
+                    </h4>
+										<p>{{ this.comment }}</p>
+									</div>
+								</div>
+                {{/each}}
+
+							</div>
+						</div>
+
+      </div>
     </div>
   </div>
   <!-- end single product -->
