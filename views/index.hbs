@@ -99,7 +99,7 @@
                 <p class="badge badge-success">{{ this.offer.discount }} - {{splitDate this.offer.validTill }}</p>
               </div>
               {{/if}}
-              <a href="/food/{{ this._id }}"><img src="{{ this.image }}" alt="" height="300px" ></a>
+              <a href="/food/{{ this._id }}"><img src="{{ this.image }}" alt="" height="300px"></a>
             </div>
             <h3>{{ this.name }}</h3>
             <a href="/myprofile/{{ this.belongsTo }}" target="_blank">{{ this.seller.name }}</a>
@@ -114,19 +114,20 @@
             {{/if}}
             <p class="product-price">
               {{#if this.offer}}
-                <del>₹{{ this.price }}</del>
-                <br>
-                <span>₹{{ this.offer.newprice }}</span>
+              <del>₹{{ this.price }}</del>
+              <br>
+              <span>₹{{ this.offer.newprice }}</span>
               {{else}}
-                ₹{{ this.price }}
+              ₹{{ this.price }}
               {{/if}}
             </p>
             <form action="/cart/add/{{ this._id }}" method="post">
-            <button type="submit" class="cart-btn">
-            <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
+              <button type="submit" class="cart-btn">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
             </form>
-            <button type="button" class="btn btn-primary" onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')">Shop</button>
+            <button type="button" class="btn btn-primary"
+              onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')">Shop</button>
           </div>
         </div>
         {{/each}}
@@ -245,8 +246,8 @@
 
   <!-- end latest news -->
 
-{{> script}}
-{{> payment}}
+  {{> script}}
+  {{> payment}}
 </body>
 
 </html>

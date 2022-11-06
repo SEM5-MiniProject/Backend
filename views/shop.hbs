@@ -44,6 +44,11 @@
         {{#each this.foods}}
         <div class="col-lg-3 col-md-6 text-center {{ ../category }}">
           <div class="single-product-item">
+            {{#if this.offer}}
+            <div class="product-badge offer-badge">
+              <p class="badge badge-success">{{ this.offer.discount }} - {{splitDate this.offer.validTill }}</p>
+            </div>
+            {{/if}}
             <div class="product-image">
               <a href="/food/{{ this._id }}"><img src="{{ this.image }}" alt="" height="300px"></a>
             </div>
@@ -63,6 +68,8 @@
               <button type="submit" class="cart-btn">
                 <i class="fas fa-shopping-cart"></i> Add to Cart
               </button>
+            </form>
+            <button class="btn btn-primary" onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')">Buy</button>
           </div>
         </div>
         {{/each}}
@@ -77,7 +84,7 @@
   <!-- end copyright -->
 
   {{> script}}
-
+  {{> payment}}
 </body>
 
 </html>
