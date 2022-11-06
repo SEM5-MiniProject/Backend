@@ -89,7 +89,42 @@ const getShop = async (req, res) => {
     }
 
   ]);
-  res.render('shop', { persist: req.persist, food: foodwithandwithoutoffer });
+  const {category,veg,nonveg,price} = req.query;
+  let food = foodwithandwithoutoffer;
+  if (category) {
+    food = food.filter((item) => item.category === category);
+  }
+  if (veg === 'true') {
+    food = food.map((item) => {
+      return {
+        ...item,
+        foods: item.foods.filter((food) => food.isVeg)
+      };
+    });
+  }
+  if (nonveg === 'true') {
+    food = food.map((item) => {
+      return {
+        ...item,
+        foods: item.foods.filter((food) => !food.isVeg)
+      };
+    });
+  }
+  if (price) {
+    food = food.map((item) => {
+      return {
+        ...item,
+        foods: item.foods.filter((food) => {
+          if (food.offer) {
+            return food.offer.newprice <= price;
+          }
+          return food.price <= price;
+        })
+      };
+    });
+  }
+
+  res.render('shop', { persist: req.persist, food: food });
 }
 
 module.exports = {
