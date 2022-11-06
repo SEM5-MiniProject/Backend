@@ -10,11 +10,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.2.0
+      with:
+        mongodb-version: 4.0
     - name: Use Node.js 16.x
       uses: actions/setup-node@v3
       with:
         node-version: 16.x
         cache: 'yarn'
     - run: yarn install --frozen-lockfile
+    - name: Run tests
+      run: yarn run test
+      env:
+        MONGO_URI= {{ secrets.MONGO_URI }}
+        JWT_SECRET= {{ secrets.JWT_SECRET }}
+        JWT_EXPIRES_IN= {{ secrets.JWT_EXPIRES_IN }}
+        FIREBASE_PRIVATE_KEY= {{ secrets.FIREBASE_PRIVATE_KEY }}
+        SESSION_SECRET= {{ secrets.SESSION_SECRET }}
+        KEY_ID= {{ secrets.KEY_ID }}
+        KEY_SECRET= {{ secrets.KEY_SECRET }}
         
