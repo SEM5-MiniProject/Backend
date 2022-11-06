@@ -14,13 +14,109 @@
           <div class="breadcrumb-text">
             <p>Choose from the best cuisines available around you!</p>
             <h1>Shop</h1>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Apply Filters
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- end breadcrumb section -->
+  <!-- Button trigger modal -->
 
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="checkout-accordion-wrap">
+                <div class="accordion" id="accordionExample">
+                  <div class="card single-accordion">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                          aria-expanded="true" aria-controls="collapseOne">
+                          Your Product
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                      data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div class="billing-address-form">
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="row">
+                                <p><input type="number" placeholder="Price ₹" id="Filterprice" name="price"></p>
+                              </div>
+                              <div class="row">
+                                <div class="card single-accordion">
+                                  <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <input type="checkbox" id="FilterIsVeg" name="isVeg">
+                                      <label for="IsVeg">Veg</label><br>
+                                    </h5>
+                                  </div>
+                                </div>
+                                <div class="card single-accordion">
+                                  <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                      <input type="checkbox" id="FilterNonVeg" name="NonVeg">
+                                      <label for="NonVeg"> Non Veg</label><br>
+                                    </h5>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <div class="order-details-wrap">
+                                <table class="current-list-item">
+                                  <label> Select Category: </label> <br>
+                                  <select name="category" id="Filtercategory">
+                                    <option value="null"> Select Category
+                                    </option>
+                                    <option value="breakfast"> Breakfast
+                                    </option>
+                                    <option value="lunch"> Lunch
+                                    </option>
+                                    <option value="dinner"> Dinner
+                                    </option>
+                                    <option value="snacks"> Snacks
+                                    </option>
+                                  </select>
+                                </table><br><br><br><br><br>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="applyFilter(Filterprice,FilterIsVeg,FilterNonVeg,Filtercategory)">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- products -->
   <div class="product-section mt-150 mb-150">
     <div class="container">
@@ -54,6 +150,15 @@
             </div>
             <h3>{{ this.name }}</h3>
             <h3>{{ ../category }}</h3>
+            {{#if this.isVeg }}
+            <h3>
+              <span class="badge badge-success">Veg</span>
+            </h3>
+            {{else}}
+            <h3>
+              <span class="badge badge-danger">Non-Veg</span>
+            </h3>
+            {{/if}}
             <p class="product-price">
               {{#if this.offer}}
               <del>₹{{ this.price }}</del>
@@ -69,7 +174,8 @@
                 <i class="fas fa-shopping-cart"></i> Add to Cart
               </button>
             </form>
-            <button class="btn btn-primary" onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')">Buy</button>
+            <button class="btn btn-primary"
+              onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')">Buy</button>
           </div>
         </div>
         {{/each}}
@@ -85,6 +191,16 @@
 
   {{> script}}
   {{> payment}}
+  <script>
+    function applyFilter(price,veg,nonveg,category){
+      var price = price.value;
+      var veg = veg.checked;
+      var nonveg = nonveg.checked;
+      var category = category.value;
+      console.log(price,veg,nonveg,category);
+      window.location.href = `/shop?price=${price}&veg=${veg}&nonveg=${nonveg}${category!== 'null'? `&category=${category}` : ''}`;
+    }
+  </script>
 </body>
 
 </html>
