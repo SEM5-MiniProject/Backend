@@ -4,6 +4,6 @@ const auth = require('../middleware/auth');
 const { checkIfUser } = require('../middleware/requiredUser');
 const router = express.Router();
 
-router.get('/food/:id', auth,checkIfUser,getFood)
+router.get('/food/:id', auth, checkIfUser, getFood)
 
 module.exports = router;

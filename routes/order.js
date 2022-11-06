@@ -4,6 +4,6 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { checkIfUser } = require('../middleware/requiredUser');
 
-router.get('/myorders', auth, checkIfUser,getMyOrders)
+router.get('/myorders', auth, checkIfUser, getMyOrders)
 
 module.exports = router;
