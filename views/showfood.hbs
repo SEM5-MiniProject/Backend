@@ -33,7 +33,7 @@
             <br>
             {{#if food.canReview}}
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary mt-5 button button1" data-toggle="modal" data-target="#exampleModal">
               {{#if food.review}}
               Update Review
               {{else}}
@@ -42,7 +42,7 @@
             </button>
             {{#if food.review}}
             <form action="/review/delete/{{ food.review._id }}" method="post">
-              <button type="submit">Delete Review</button>
+              <button class ="button button1" type="submit">Delete Review</button>
             </form>
             {{/if}}
 
@@ -116,8 +116,35 @@
             <div class="single-product-form">
               <form action="/cart/add/{{ food._id }}" method="post">
                 <input type="number" name="quantity" value="{{ food.cart.quantity }}" id="quantity">
-                <button type="submit" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-                <button type="button" class="cart-btn"
+                <button type="submit" class="cart-btn button button1"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <style>
+.button {
+  background-color: #ff7300;
+  border: none;
+  border-radius:16px;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: white; 
+  color: #ff7300; 
+  border: 2px solid #ff7300;
+}
+
+.button1 {
+  background-color: #ff7300;
+  color: white;
+}
+</style>
+                <button type="button" class="cart-btn button button1"
                   onclick="Payment(event,'{{ food._id }}','{{ food.name }}', '{{ food.image }}',quantity.value)"><i
                     class="fas fa-shopping-cart"></i>Buy</button>
               </form>
