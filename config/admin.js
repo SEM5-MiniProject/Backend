@@ -9,5 +9,12 @@ const adminJs = new AdminJS({
   databases: [mongoose],
   rootPath: '/admin',
   resources: models.model,
+  branding: {
+    companyName: 'MealDiaries',
+    softwareBrothers: false,
+    logo:'https://mealdiaries.herokuapp.com/assets/img/logo.png',
+    favicon:'https://mealdiaries.herokuapp.com/assets/img/logo.png',
+    withMadeWithLove:false,
+  },
 });
 module.exports = adminJs;
