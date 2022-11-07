@@ -171,12 +171,38 @@
 
             </p>
             <form action="/cart/add/{{ this._id }}" method="post">
-              <button type="submit" class="cart-btn">
-                <i class="fas fa-shopping-cart"></i> Add to Cart
-              </button>
+                    <button style =" border-radius: 15px" type="submit" class="button button1"><b>Add to Cart</b></button>
+          <style>
+.button {
+  background-color: #ff7300;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: white; 
+  color: #ff7300; 
+  border: 2px solid #ff7300;
+}
+
+.button1 {
+  background-color: #ff7300;
+  color: white;
+}
+</style>
             </form>
-            <button class="btn btn-primary"
-              onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')">Buy</button>
+                        <button  style ="border-radius: 10px;background-color: white; 
+  color: #ff7300; 
+  border: 2px solid #ff7300;" type="button" class="btn btn-primary"
+              onclick="Payment(event,'{{this._id}}','{{ this.name }}','{{ this.image }}')"><b>Shop</b></button>
           </div>
         </div>
         {{/each}}

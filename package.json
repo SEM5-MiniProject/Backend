@@ -11,7 +11,7 @@
     "lint": "eslint --plugin markdown --ext js,md .",
     "fix": "eslint --fix --plugin markdown --ext js,md .",
     "prepare": "husky install",
-    "test":"jest --testTimeout=10000"
+    "test": "jest --testTimeout=10000"
   },
   "dependencies": {
     "@adminjs/express": "^5.0.0",
@@ -37,7 +37,7 @@
     "mongoose": "^6.5.4",
     "mongoose-unique-validator": "^3.1.0",
     "multer": "^1.4.5-lts.1",
-    "nanoid": "3.3.2",
+    "nanoid": "^3.3.2",
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1",
     "razorpay": "^2.8.3",
