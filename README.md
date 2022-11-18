@@ -9,6 +9,8 @@
 
 ![Shop](./images/shop.png)
 
+&nbsp;
+
 ![Cart](./images/cart.png)
 
 <b>API DOCS</b>
