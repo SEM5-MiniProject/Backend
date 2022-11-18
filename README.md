@@ -6,6 +6,8 @@
 
 <p>https://mealdiaries.herokuapp.com/</p>
 
+![Shop](./images/shop.png)
+
 
 <b>API DOCS</b>
 
