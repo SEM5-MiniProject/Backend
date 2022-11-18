@@ -1,4 +1,5 @@
 # Backend
+
 [![Node.js CI](https://github.com/SEM5-MiniProject/Backend/actions/workflows/node.js.yml/badge.svg)](https://github.com/SEM5-MiniProject/Backend/actions/workflows/node.js.yml)
 [![Heroku Deploy](https://github.com/SEM5-MiniProject/Backend/actions/workflows/heroku.yml/badge.svg?branch=main&event=workflow_run)](https://github.com/SEM5-MiniProject/Backend/actions/workflows/heroku.yml)
 
@@ -8,12 +9,11 @@
 
 ![Shop](./images/shop.png)
 
+![Cart](./images/cart.png)
 
 <b>API DOCS</b>
 
 <p>https://mealdiaries.herokuapp.com/api-docs</p>
-
-
 
 <b>Admin</b>
 
@@ -25,16 +25,16 @@
 <h4> Get Started</h4>
 </br>
 
-``` 
+```
     npm install --global yarn
     yarn install 
 ```
+
 <h4> How To Run </h4>
 
 ```
     yarn run dev
 ```
-
 
 <h4>Commands To Spin Docker Container</h4>
 
