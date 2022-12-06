@@ -8,11 +8,11 @@
 
 <p>https://mealdiaries.herokuapp.com/</p>
 
-![Shop](./images/shop.png)
+![Shop](https://res.cloudinary.com/dvdi2oaso/image/upload/v1670329384/GithubProfile/img/shop_gfnwc8.png)
 
 &nbsp;
 
-![Cart](./images/cart.png)
+![Cart](https://res.cloudinary.com/dvdi2oaso/image/upload/v1670329382/GithubProfile/img/cart_kluxb7.png)
 
 <b>API DOCS</b>
 
